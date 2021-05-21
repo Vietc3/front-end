@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps =  async (context:any)=> {
      
         let data  = await useGetArticles(`youtube_url_ne=`);
 
-        return { props: { articles: data,  revalidate: 10 } };
+        return { props: { articles: data },  revalidate: 10 };
     } catch (err) {
         return { props: { errors: err.message } };
     }
