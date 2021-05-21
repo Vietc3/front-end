@@ -61,7 +61,7 @@ export const getStaticProps: GetStaticProps = async (context: any) => {
     let data = await useGetArticles('featured=false&_sort=public_date:DESC&_limit=4');
     let dataFeatured = await useGetArticles('featured=true');
 
-    return { props: { articles: data, featured: dataFeatured, revalidate: 10 } };
+    return { props: { articles: data, featured: dataFeatured, revalidate: 60 } };
   } catch (err) {
     return { props: { errors: err.message } };
   }
