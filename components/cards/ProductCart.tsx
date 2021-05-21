@@ -26,8 +26,11 @@ const ProductCard = ({product}:Props) => {
       onMouseLeave={() => setHover(false)}
       style={{ transform: `scale(${hover ? 1.01 : 1})` }}
             transition="ease-in 0.2s"
+            h={{ base: "100%", lg: "100%" }} 
+            
     >
       <Box
+       h={{ base: "100%", lg: "100%" }} 
         w="100%"
         bg={useColorModeValue("white", "gray.800")}
         shadow="lg"
@@ -37,8 +40,8 @@ const ProductCard = ({product}:Props) => {
 
         <Image
           h="130px"
-          w="full"
-          fit="cover"
+          w="auto"
+          
           mt={2}
           src={urlImage[0].photos[0]}
           alt={product.name}
@@ -57,6 +60,7 @@ const ProductCard = ({product}:Props) => {
             fontWeight="bold"
             fontSize="md"
             textTransform="uppercase"
+            pt={5}
           >
            {product.name.substr(0, 20)}
                     {product.name.length > 20 ? '...' : ''}
@@ -67,6 +71,7 @@ const ProductCard = ({product}:Props) => {
           justifyContent="space-between"
           px={4}
           py={2}
+          pt={12}
           bg="white"
           roundedBottom="lg"
         >

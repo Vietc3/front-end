@@ -32,11 +32,11 @@ const Products = ({
             </chakra.h1>
             <Image pl="5px" w="170px" src="/logo.png" h="42px"/>
             </Box>
-            <Box d="flex" flexDirection={{ base: 'column', lg: 'row' }}  as="section" pl={{ base: '0px', lg: "80px" }}
+            <Box d="flex" flexDirection={{ base: 'column', lg: 'row' }}  h={{lg: "350px" }} pl={{ base: '0px', lg: "80px" }}
                 pr={{ base: '0px', lg: "80px" }} >
                 {products?.map((product: any) => {
                     return (
-                        <Box w={{ base: "100%", lg: "25%" }}   key={product.name + product.id} p={2} >
+                        <Box w={{ base: "100%", lg: "25%" }}  h={{ base: "100%", lg: "100%" }}  key={product.name + product.id} p={2} >
                             <ProductCart
                                 product={product}
                             />
