@@ -293,7 +293,7 @@ const NAV_ITEMS: Array<NavItem> = [
     },
     {
         label: 'VIDEOS',
-        href: 'videos',
+        href: '/videos',
     },
     {
         label: 'PLAYITRIGHT STORE',
