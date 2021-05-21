@@ -74,6 +74,7 @@ export default function WithSubnavigation() {
                 <Flex
                     flex={{ base: 1, md: 'auto' }}
                     ml={{ base: -2 }}
+                    pt={2}
                     display={{ base: 'flex', md: 'none' }}>
                     <IconButton
                         onClick={onToggle}
