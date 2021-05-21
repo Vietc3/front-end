@@ -27,19 +27,19 @@ const IndexPage = ({ articles, featured }: Props) => {
         description: 'This is homepage of PlayIt Right Blog Store',
         images: [
           {
-            url: 'https://www.example.ie/og-image-01.jpg',
+            url: '/logo.png',
             width: 800,
             height: 600,
             alt: 'Og Image Alt',
           },
           {
-            url: 'https://www.example.ie/og-image-02.jpg',
+            url: '/logo.png',
             width: 900,
             height: 800,
             alt: 'Og Image Alt Second',
           },
-          { url: 'https://www.example.ie/og-image-03.jpg' },
-          { url: 'https://www.example.ie/og-image-04.jpg' },
+          { url: '/logo.png' },
+          { url: '/logo.png' },
         ],
       }}
     />
