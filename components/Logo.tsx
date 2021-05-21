@@ -3,7 +3,7 @@ import { Box, Image } from '@chakra-ui/react';
 const Logo = (props: any) => {
     return (
         <Box {...props} >
-            <Image src="/logo.png" fontWeight="bold" />
+            <Image src="/logoTV.png" fontWeight="bold" />
         </Box>
     );
 };

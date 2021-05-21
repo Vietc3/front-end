@@ -30,7 +30,7 @@ const Products = ({
                 marginTop="0.5rem" >
                 Shop on
             </chakra.h1>
-            <Image w="170px" src="https://s3-ap-southeast-1.amazonaws.com/oleh/assets/1/content/Logo-image-desktop-87J.png" h="48px"/>
+            <Image w="170px" src="/logo.png" h="48px"/>
             </Box>
             <Box d="flex" flexDirection={{ base: 'column', lg: 'row' }}  as="section" pl={{ base: '0px', lg: "80px" }}
                 pr={{ base: '0px', lg: "80px" }} >
