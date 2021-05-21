@@ -155,7 +155,7 @@ const Article = ({ article }: Props) => {
             </Box>
             {/* <AdsBanner/> */}
             <Box
-                pt={'15px'}
+                pt={'30px'}
                 pl={{ base: '0px', lg: "160px" }}
                 pr={{ base: '0px', lg: "160px" }}>
                 {/* <DisqusComments post={article} /> */}
