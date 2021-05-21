@@ -30,7 +30,7 @@ const Products = ({
                 marginTop="0.5rem" >
                 Shop on
             </chakra.h1>
-            <Image w="170px" src="/logo.png" h="48px"/>
+            <Image pl="5px" w="170px" src="/logo.png" h="40px"/>
             </Box>
             <Box d="flex" flexDirection={{ base: 'column', lg: 'row' }}  as="section" pl={{ base: '0px', lg: "80px" }}
                 pr={{ base: '0px', lg: "80px" }} >
