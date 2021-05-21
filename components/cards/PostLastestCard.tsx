@@ -89,7 +89,7 @@ const PostLastestCard = ({
                 {
                     tags ? tags.map((tag: any) => (
                         <Tag key={tag} mr={1} size="lg" bgColor="red" borderRadius="full">
-                            <TagLabel color="white">{tag}</TagLabel>
+                            <TagLabel color="white" fontSize={{base:"xs",lg:"md"}}>{tag}</TagLabel>
                         </Tag>
                     )) : null
                 }
@@ -113,9 +113,9 @@ const PostLastestCard = ({
                     mt={1}
                     mb={2}
                     display="block"
-                    fontSize="lg"
+                    fontSize={{base:"15",lg:"lg"}}
                     lineHeight="normal"
-                    fontWeight="semibold"
+                    fontWeight="bold"
                     href="#"
                     color={colors.secondary}
                 >

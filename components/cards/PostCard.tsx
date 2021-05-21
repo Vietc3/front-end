@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import { chakra, HStack, Box, Flex, useColorModeValue, FlexProps, Icon, Center, Spacer } from "@chakra-ui/react";
 import Image from '../Image';
 import { useRouter } from 'next/router';
@@ -14,7 +14,7 @@ interface Props extends FlexProps {
 }
 
 const PostCard = ({ idArticle, article }: Props) => {
-
+  const [hover, setHover] = useState(false);
   const router = useRouter();
   const onClick = () => {
     router.push(`/articles/${idArticle}`);
@@ -30,6 +30,8 @@ const PostCard = ({ idArticle, article }: Props) => {
       alignItems="center"
       justifyContent="center"
       onClick={()=>onClick()}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
     >
       <Box
         bg={useColorModeValue("white", "gray.800")}
@@ -40,14 +42,19 @@ const PostCard = ({ idArticle, article }: Props) => {
         w="full"
 
       >
-        <Box w={{ lg: "100%" }} display={{base:'none',lg:'flex'}}>
-          <Image
-            objectFit="cover"
-            src={getUrlImage(article.hero_desktop.url)}
-            maxHeight={'640px'}
-            minHeight={'360px'}
-            w="100%"
-          />
+        <Box w={{ lg: "100%" }} display={{base:'none',lg:'flex'}}  style={{
+                    backgroundImage: hover ? `url("${getUrlImage(article.hero_desktop.url)}`:`linear-gradient(rgba(245, 246, 252, 0.52), rgb(39 40 53 / 68%)),url("${getUrlImage(article.hero_desktop.url)}")`,
+                    backgroundRepeat: 'no-repeat',
+                    width: '100%',
+                    backgroundSize: "cover"
+                }}
+              
+                justifyContent="flex-end"
+                flexDirection="column"
+                h={{ base: '350px', lg: "660px" }}
+                pl={{ base: '0px', lg: "80px" }}
+                pr={{ base: '0px', lg: "80px" }}>
+      
         </Box>
 
         <Box w={{ lg: "100%" }} display={{base:'flex',lg:'none'}}>

@@ -9,6 +9,8 @@ import YoutubeEmbed from '../../youtube/youtube'
 import { getUrlImage, formatDatePublic, getTags } from '../../../helpers/commonFuction';
 import { URL_BASE } from '../../../constants';
 import Image from '../../Image';
+import Commento from 'react-commento';
+
 
 
 
@@ -156,7 +158,8 @@ const Article = ({ article }: Props) => {
                 pt={'15px'}
                 pl={{ base: '0px', lg: "160px" }}
                 pr={{ base: '0px', lg: "160px" }}>
-                <DisqusComments post={article} />
+                {/* <DisqusComments post={article} /> */}
+                <Commento key={article.id} id={article.id} pageId={`/articles/${article.id}`}/>
             </Box>
 
 

@@ -44,13 +44,12 @@ const TrendingCard = ({
             >
                 <Flex w="full" pos="relative" overflow="hidden" 
                >
-                    <Flex w="full" {...carouselStyle}  _hover={{
-                    opacity: 0.8,
-                }}>
+                    <Flex w="full" {...carouselStyle} >
                         {
                             slides.map((slide: any) => (
                                 <Box key={slide.id +slide.title} h="100%" w="full" cursor="pointer" boxSize="full" shadow="md" flex="none" >
                                     <PostCard 
+                                  
                                         article={slide}
                                         idArticle={slide.id}
                                         alt={`Picture of ${slide.title}`}
@@ -64,6 +63,7 @@ const TrendingCard = ({
                         mt="-22px"
                         p="16px" color="white"
                         bg="black"
+                        
                         fontWeight="bold"
                         fontSize="18px"
                         transition="0.6s ease"
