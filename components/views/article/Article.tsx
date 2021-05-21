@@ -3,13 +3,13 @@ import { Box, Heading, Flex, Icon, Tag, TagLabel, chakra, Link, Center,SimpleGri
 import useColorTheme from '../../../hooks/useColorTheme';
 import Markdown from "markdown-to-jsx";
 import _ from 'lodash';
-import DisqusComments from '../../disqus/disqusComment'
+import Commento from '../../disqus/Commento'
 import { BsCalendar, BsPencil } from "react-icons/bs";
 import YoutubeEmbed from '../../youtube/youtube'
 import { getUrlImage, formatDatePublic, getTags } from '../../../helpers/commonFuction';
 import { URL_BASE } from '../../../constants';
 import Image from '../../Image';
-import Commento from 'react-commento';
+
 
 
 
@@ -159,7 +159,7 @@ const Article = ({ article }: Props) => {
                 pl={{ base: '0px', lg: "160px" }}
                 pr={{ base: '0px', lg: "160px" }}>
                 {/* <DisqusComments post={article} /> */}
-                <Commento key={article.id} id={article.id} pageId={`/articles/${article.id}`}/>
+                <Commento id={article.id} />
             </Box>
 
 
