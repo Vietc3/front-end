@@ -104,7 +104,7 @@ export default function WithSubnavigation() {
                     </Flex>
                 </Flex>
 
-                <Flex display={{ base: 'none', md: 'flex' }} flex={{ base: 1 }} justify={{ base: 'center', md: 'end' }}>
+                <Flex display={{ base: 'none', lg: 'flex' }} flex={{ base: 1 }} justify={{ base: 'center', md: 'end' }}>
                     <Spacer></Spacer>
                     <chakra.form w="50%" onSubmit={formik.handleSubmit}>
                         <InputGroup w="100%">
@@ -129,7 +129,7 @@ export default function WithSubnavigation() {
                 </Flex>
 
                 <Stack
-                    display={{ base: 'flex', md: 'none' }}
+                    display={{ base: 'flex', md: 'flex',lg:'none' }}
                     flex={{ base: 1, md: 0 }}
                     justify={'flex-end'}
                     direction={'row'}
