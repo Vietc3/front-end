@@ -91,7 +91,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         const slug = params?.slug;
         let data = await useGetArticleById(slug);
         let dataNextStories = await useGetArticles(`id_ne=${slug}&_sort=public_date:DESC&_limit=2`);
-        return { props: { article: data, articlesNextStories: dataNextStories }, revalidate: 10 };
+        return { props: { article: data, articlesNextStories: dataNextStories }, revalidate: 1 };
     } catch (err) {
         return { props: { errors: err.message } };
     }
