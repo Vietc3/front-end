@@ -18,7 +18,7 @@ import {
     useDisclosure,
     Spacer,
     Button,
-    chakra,
+    chakra, HStack
 
 } from '@chakra-ui/react';
 import {
@@ -28,6 +28,9 @@ import {
 } from '@chakra-ui/icons';
 import {
     AiOutlineSearch,
+    AiFillFacebook,
+    AiOutlineInstagram,
+    AiFillTwitterSquare, AiFillYoutube, AiFillInstagram
 } from "react-icons/ai";
 import styles from '../../constants/styles';
 import { useFormik } from 'formik';
@@ -35,17 +38,37 @@ import { useRecoilState } from 'recoil';
 import { SearchKeyword } from '../../recoil/search';
 import { useRouter } from 'next/router';
 import Logo from '../Logo';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
+import {useUrlSocial} from '../../helpers/contentFooter';
 
 export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
     const [OpenSearch, setOpenSearch] = useState(false);
+    const [urlButton, setUrlButton] = useState({
+        facebook:"facebook.com",ins:"instagram.com",youtube:"youtube.com",google:"google.com"
+    });
 
     const [searchKeyword, setSearchKeyword] = useRecoilState(SearchKeyword);
+
+
+    useEffect(()=>{
+        useUrlSocial().then(res=>setUrlButton(res)
+    )},[])
+
+
     const router = useRouter();
     const onClick = () => {
         router.push(`/search`);
     };
+    const onClickSubcribe = () => {
+        router.push(`/subcribe`);
+    };
+
+    const onClickSocial = (url:string) => {
+        window.open(url, '_blank');
+    };
+
+
     const formik = useFormik({
         initialValues: {
             keyword: searchKeyword,
@@ -85,7 +108,7 @@ export default function WithSubnavigation() {
                         aria-label={'Toggle Navigation'}
                     />
                 </Flex>
-                <Flex flex={{ base: 10,lg:1 }} justify={{ base: 'left', md: 'start' }}>
+                <Flex flex={{ base: 10, lg: 1 }} justify={{ base: 'left', md: 'start' }}>
                     <Button display={{ base: 'none', md: 'flex' }} variant="ghost">
                         <Link href="/">
                             <Logo w="100%" />
@@ -101,12 +124,17 @@ export default function WithSubnavigation() {
 
                     <Flex display={{ base: 'none', md: 'flex' }} w="100%" ml={5}>
                         <DesktopNav />
+
                     </Flex>
                 </Flex>
 
-                <Flex display={{ base: 'none', lg: 'flex' }} flex={{ base: 1 }} justify={{ base: 'center', md: 'end' }}>
+                <Flex display={{ base: 'none', lg: 'flex' }} pt={3} flex={{ base: 1 }} justify={{ base: 'center', md: 'end' }}>
+                <Spacer></Spacer>
+                    <Button display={{ base: 'none', md: 'flex' }} onClick={()=>onClickSubcribe()} borderRadius={30} colorScheme="red" variant="solid">
+                        SUBRCRIBE
+                    </Button>
                     <Spacer></Spacer>
-                    <chakra.form w="50%" onSubmit={formik.handleSubmit}>
+                    <chakra.form w="40%" onSubmit={formik.handleSubmit}>
                         <InputGroup w="100%">
                             <InputRightElement
                                 w="15%"
@@ -126,10 +154,143 @@ export default function WithSubnavigation() {
                                 value={formik.values.keyword} bgColor="white" color="black" borderRadius={25} type="tel" placeholder="Search Keyword" />
                         </InputGroup>
                     </chakra.form>
+                    <Spacer></Spacer>
+                    <Stack
+                        flex={{ base: 1, md: 0 }}
+                        justify={'flex-end'}
+                        direction={'row'}
+                        spacing={6}
+                        pr={1}>
+                        <IconButton
+                            onClick={()=>onClickSocial(urlButton.facebook)}
+                            icon={
+                                <AiFillFacebook color="black" size="md" />
+                            }
+                            variant={'ghost'}
+                            aria-label={'Toggle Navigation'}
+                        />
+
+                    </Stack>
+                    <Stack
+                        flex={{ base: 1, md: 0 }}
+                        justify={'flex-end'}
+                        direction={'row'}
+                        spacing={6}
+                        pr={1}>
+                        <IconButton
+    onClick={()=>onClickSocial(urlButton.instagram)}
+                            icon={
+                                <AiOutlineInstagram color="black" size="md" />
+                            }
+                            variant={'ghost'}
+                            aria-label={'Toggle Navigation'}
+                        />
+
+                    </Stack>
+                    <Stack
+                        flex={{ base: 1, md: 0 }}
+                        justify={'flex-end'}
+                        direction={'row'}
+                        spacing={6}
+                        pr={1}>
+                        <IconButton
+onClick={()=>onClickSocial(urlButton.twitter)}
+                            icon={
+                                <AiFillTwitterSquare color="black" size="md" />
+                            }
+                            variant={'ghost'}
+                            aria-label={'Toggle Navigation'}
+                        />
+                    </Stack>
+                    <Stack
+                        flex={{ base: 1, md: 0 }}
+                        justify={'flex-end'}
+                        direction={'row'}
+                        spacing={6}
+                        pr={1}>
+                        <IconButton
+onClick={()=>onClickSocial(urlButton.youtube)}
+                            icon={
+                                <AiFillYoutube color="black" size="md" />
+                            }
+                            variant={'ghost'}
+                            aria-label={'Toggle Navigation'}
+                        />
+                    </Stack>
+
                 </Flex>
 
                 <Stack
-                    display={{ base: 'flex', md: 'flex',lg:'none' }}
+                    display={{ base: 'none', md: 'flex', lg: 'none' }}
+                    flex={{ base: 1, md: 0 }}
+                    justify={'flex-end'}
+                    direction={'row'}
+                    spacing={6}
+                    pr={1}>
+                    <IconButton
+onClick={()=>onClickSocial(urlButton.facebook)}
+                        icon={
+                            <AiFillFacebook color="black" size="md" />
+                        }
+                        variant={'ghost'}
+                        aria-label={'Toggle Navigation'}
+                    />
+
+                </Stack>
+                <Stack
+                    display={{ base: 'none', md: 'flex', lg: 'none' }}
+                    flex={{ base: 1, md: 0 }}
+                    justify={'flex-end'}
+                    direction={'row'}
+                    spacing={6}
+                    pr={1}>
+                    <IconButton
+onClick={()=>onClickSocial(urlButton.instagram)}
+                        icon={
+                            <AiOutlineInstagram color="black" size="md" />
+                        }
+                        variant={'ghost'}
+                        aria-label={'Toggle Navigation'}
+                    />
+
+                </Stack>
+                <Stack
+                    display={{ base: 'none', md: 'flex', lg: 'none' }}
+                    flex={{ base: 1, md: 0 }}
+                    justify={'flex-end'}
+                    direction={'row'}
+                    spacing={6}
+                    pr={1}>
+                    <IconButton
+onClick={()=>onClickSocial(urlButton.twitter)}
+                        icon={
+                            <AiFillTwitterSquare color="black" size="md" />
+                        }
+                        variant={'ghost'}
+                        aria-label={'Toggle Navigation'}
+                    />
+                </Stack>
+                <Stack
+                    display={{ base: 'none', md: 'flex', lg: 'none' }}
+                    flex={{ base: 1, md: 0 }}
+                    justify={'flex-end'}
+                    direction={'row'}
+                    spacing={6}
+                    pr={1}>
+                    <IconButton
+onClick={()=>onClickSocial(urlButton.youtube)}
+                        icon={
+                            <AiFillYoutube color="black" size="md" />
+                        }
+                        variant={'ghost'}
+                        aria-label={'Toggle Navigation'}
+                    />
+                </Stack>
+
+
+
+                <Stack
+                    display={{ base: 'flex', md: 'flex', lg: 'none' }}
                     flex={{ base: 1, md: 0 }}
                     justify={'flex-end'}
                     direction={'row'}
@@ -138,7 +299,7 @@ export default function WithSubnavigation() {
                     <IconButton
                         onClick={() => setOpenSearch(!OpenSearch)}
                         icon={
-                            <AiOutlineSearch  size="md"/> 
+                            <AiOutlineSearch size="md" />
                         }
                         variant={'ghost'}
                         aria-label={'Toggle Navigation'}
@@ -156,16 +317,16 @@ export default function WithSubnavigation() {
                     <Flex>
                         <Spacer />
                         <IconButton
-                        onClick={() => setOpenSearch(!OpenSearch)}
-                        icon={
-                            <CloseIcon />
-                        }
-                        variant={'ghost'}
-                        aria-label={'Toggle Navigation'}
-                    />
+                            onClick={() => setOpenSearch(!OpenSearch)}
+                            icon={
+                                <CloseIcon />
+                            }
+                            variant={'ghost'}
+                            aria-label={'Toggle Navigation'}
+                        />
 
                     </Flex>
-                    
+
 
                     <chakra.form onSubmit={formik.handleSubmit}>
                         <InputGroup w="100%">
@@ -265,10 +426,96 @@ const MobileNav = () => {
         <Stack
             bg={useColorModeValue('white', 'gray.800')}
             p={4}
-            display={{ md: 'none' }}>
+            display={{ md: 'none' }}
+            h="100vh">
             {NAV_ITEMS.map((navItem) => (
                 <MobileNavItem key={navItem.label} {...navItem} />
             ))}
+            <Button display={{ base: 'flex' }} onClick={()=>onClickSubcribe()} borderRadius={30} colorScheme="red" variant="solid">
+                SUBRCRIBE
+            </Button>
+            <HStack
+                spacing="0"
+            >
+                <IconButton
+                    w="15%"
+                    onClick={()=>onClickSocial(urlButton.facebook)}
+                    icon={
+                        <AiFillFacebook color="black" size="md" />
+                    }
+                    variant={'ghost'}
+                    aria-label={'Toggle Navigation'}
+                />
+                <IconButton
+                    w="15%"
+                    onClick={()=>onClickSocial(urlButton.instagram)}
+                    icon={
+                        <AiOutlineInstagram color="black" size="md" />
+                    }
+                    variant={'ghost'}
+                    aria-label={'Toggle Navigation'}
+                />
+                <IconButton
+                    w="15%"
+                    onClick={()=>onClickSocial(urlButton.twitter)}
+                    icon={
+                        <AiFillTwitterSquare color="black" size="md" />
+                    }
+                    variant={'ghost'}
+                    aria-label={'Toggle Navigation'}
+                />
+                <IconButton
+                    w="15%"
+                    onClick={()=>onClickSocial(urlButton.youtube)}
+                    icon={
+                        <AiFillYoutube color="black" size="md" />
+                    }
+                    variant={'ghost'}
+                    aria-label={'Toggle Navigation'}
+                />
+
+            </HStack>
+            {/* <Stack
+
+                    flex={{ base: 1, md: 0 }}
+                    justify={'flex-end'}
+                    direction={'row'}
+                    spacing={3}
+                >
+                    <IconButton
+
+                        icon={
+                            <AiOutlineInstagram color="black" size="md" />
+                        }
+                        variant={'ghost'}
+                        aria-label={'Toggle Navigation'}
+                    />
+
+                </Stack>
+                <Stack
+
+                    flex={{ base: 1, md: 0 }}
+                    justify={'flex-end'}
+                    direction={'row'}
+                    spacing={3}
+                >
+
+                </Stack>
+                <Stack
+                    justify={'flex-end'}
+                    direction={'row'}
+                    flex={{ base: 1, md: 0 }}
+                >
+                    <IconButton
+                        icon={
+                            <AiFillYoutube color="black" size="md" />
+                        }
+                        variant={'ghost'}
+                        aria-label={'Toggle Navigation'}
+                    />
+                </Stack> */}
+
+
         </Stack>
     );
 };
@@ -288,8 +535,13 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
                     textDecoration: 'none',
                 }}>
                 <Text
-                    fontWeight={600}
-                    color={useColorModeValue('gray.600', 'gray.200')}>
+                    fontSize={'lg'}
+                    fontWeight={800}
+                    color={useColorModeValue('black', 'gray.200')}
+                    _hover={{
+                        textDecoration: 'none',
+                        color: useColorModeValue('gray', 'white'),
+                    }}>
                     {label}
                 </Text>
                 {children && (

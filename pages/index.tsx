@@ -45,12 +45,12 @@ const IndexPage = ({ articles, featured }: Props) => {
     />
     <TrendingCard articles={featured} />
     <LastestCard articles={articles} />
-    <Box w="100%" display={{ base: "none", lg: "flex" }}>
+    {/* <Box w="100%" display={{ base: "none", lg: "flex" }}>
       <SubcribeForm marginY="10px" />
     </Box>
     <Box w="100%" display={{ base: "flex", lg: "none" }}>
       <NewsletterForm />
-    </Box>
+    </Box> */}
 
   </>
   );

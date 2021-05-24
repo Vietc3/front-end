@@ -10,10 +10,6 @@ import { getUrlImage, formatDatePublic, getTags } from '../../../helpers/commonF
 import { URL_BASE } from '../../../constants';
 import Image from '../../Image';
 
-
-
-
-
 type Props = {
     article: any;
 }
@@ -26,7 +22,6 @@ const MyParagraph = ({ children, ...props }: any) => {
 const MyIMG = ({ children, ...props }: any) => {
     return (
         <Box >
-
             <Image
              data-aos="fade-left"
                 width={{ base: '100%', lg: '50%' }}
@@ -39,7 +34,6 @@ const MyIMG = ({ children, ...props }: any) => {
 const Article = ({ article }: Props) => {
     
     const tags = getTags(article.tags);
- 
     const colors = useColorTheme();
     const urlImage = getUrlImage(article.hero_desktop.url);
     const urlImageMarkdown = () => {

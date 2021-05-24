@@ -18,17 +18,14 @@ import {
     FaPaperPlane,
 } from "react-icons/fa";
 import { useFormik } from 'formik';
-import { toast } from "react-toastify";
 
-import {useUpdateSubcriber} from '../../helpers/subcribers';
 const SubcribeForm = (/*{...props }*/) => {
     const formik = useFormik({
         initialValues: {
             email:"",
         },
         onSubmit: async values => {
-          let result = await useUpdateSubcriber(values.email);
-          result === 200 ? toast.success("Subcriber Successfully") : toast.warning("Subcriber Failed") 
+
         },
     });
     return (

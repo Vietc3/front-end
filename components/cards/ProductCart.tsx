@@ -9,22 +9,18 @@ type ColorProps = {
   colors: any;
 }
 const ColorCard = ({ colors }: ColorProps) => {
-console.log(colors);
-
   return (
     <HStack spacing="10px">
       {
         colors.map((color:string)=>(
-          <Box w="25px" h="25px" borderRadius={30} bg={color}/>
+          <Box w="25px" key={color} h="25px" borderRadius={30} bg={color}/>
         ))
-
       }
     </HStack>)
 
 }
 
 const ProductCard = ({ product }: Props) => {
-
   const [hover, setHover] = useState(false);
   const urlImage: any = Object.values(product.photos.photo_set);
   const onClick = () => {

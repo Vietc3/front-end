@@ -17,7 +17,7 @@ type Props = {
 
 const PostDetail = ({ article, articlesNextStories }: Props) => {
     const [products, setProducts] = useState<Array<any>>([]);
-    const productIds = getProductIds(article.products_relative);
+    const productIds = getProductIds(article.products);
     useEffect(() => {
         const result = productIds.map((id: string) => {
                 return useGetProductById(id)         
@@ -91,7 +91,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
         const slug = params?.slug;
         let data = await useGetArticleById(slug);
         let dataNextStories = await useGetArticles(`id_ne=${slug}&_sort=public_date:DESC&_limit=2`);
-        return { props: { article: data, articlesNextStories: dataNextStories }, revalidate: 1 };
+        return { props: { article: data, articlesNextStories: dataNextStories }, revalidate: 10 };
     } catch (err) {
         return { props: { errors: err.message } };
     }

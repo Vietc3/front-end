@@ -21,25 +21,20 @@ export const NAVBAR_LINKS = [
 export const FOOTER_LINKS = [
     {
         heading: 'About Us',
-        links: [
-            { href: '/', title: 'Company Profile' },
-            { href: '/', title: 'Tems Of Use' },
-            { href: '/', title: 'Privacy' },
-        ],
+        link:'/aboutUs'
     },
     {
-        heading: 'Follow Us',
-        links: [
-            { href: '/', title: 'Facebook' },
-            { href: '/', title: 'Twitter' },
-            { href: '/', title: 'Instagram' },
-        ],
+        heading: 'Contact Us',
+        link:'/contactUs'
     },
-];
-
-export const FOOTER_BOTTOM_LINKS = [
-    { href: '/', title: 'Terms Of Use' },
-    { href: '/', title: 'Privacy Policy' },
+    {
+        heading: 'Tems Of Use',
+        link:'/termsOfUse'
+    },
+    {
+        heading: 'Privacy Policy',
+        link:'/privacyPolicy'
+    },
 ];
 
 export const URL_BASE = process.env.NEXT_PUBLIC_BASE_URL;
