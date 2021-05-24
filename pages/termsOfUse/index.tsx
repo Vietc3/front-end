@@ -22,10 +22,7 @@ const TermOfUsePage = ({ content }: Props) => {
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
     try {
-
         let data = await useGetTermsOfUse();
-        console.log(data);
-        
         return { props: { content: data } , revalidate: 10};
     } catch (err) {
         return { props: { errors: err.message } };
