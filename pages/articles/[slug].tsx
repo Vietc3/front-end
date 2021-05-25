@@ -8,6 +8,8 @@ import Products from '../../components/views/article/Products';
 import { useState, useEffect } from 'react';
 import { useGetProductById } from '../../helpers/product';
 import { getProductIds } from '../../helpers/commonFuction';
+import { useRouter } from 'next/router';
+import { Box, Center, Text } from '@chakra-ui/react';
 type Props = {
     article?: any;
     articlesNextStories?: any;
@@ -18,17 +20,25 @@ type Props = {
 const PostDetail = ({ article, articlesNextStories }: Props) => {
 
     const [products, setProducts] = useState<Array<any>>([]);
-    
-    if(article.products){
+
+    if (article.products) {
         const productIds = getProductIds(article.products);
         useEffect(() => {
             const result = productIds.map((id: string) => {
-                    return useGetProductById(id)         
+                return useGetProductById(id)
             })
-            Promise.all(result).then(res=>setProducts(res))
-        },[])      
+            Promise.all(result).then(res => setProducts(res))
+        }, [])
     }
-   
+    const router = useRouter();
+    if (router.isFallback) {
+        return <> <Box pl={{ base: '0px', lg: "70px" }}
+            pr={{ base: '0px', lg: "70px" }} d="flex" flexDirection="column" flex="4" as="section" marginY={'.7em'}>
+            <Center>
+                <Text fontWeight="bold" fontSize="xl">No result</Text>
+            </Center>
+        </Box></>
+    }
     return (
         <>
             <NextSeo
@@ -67,12 +77,12 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                 dateModified={article.createdAt}
                 authorName={article.author}
                 publisherName={article.author}
-                publisherLogo= {process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`}
+                publisherLogo={process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`}
                 description="This is a mighty good description of this article."
             />
             <Article article={article} />
             <NextStories articles={articlesNextStories} />
-           {products? <Products products={products}/> :null}
+            {products ? <Products products={products} /> : null}
         </>
     );
 };
