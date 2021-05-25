@@ -16,14 +16,19 @@ type Props = {
 };
 
 const PostDetail = ({ article, articlesNextStories }: Props) => {
+
     const [products, setProducts] = useState<Array<any>>([]);
-    const productIds = getProductIds(article.products);
-    useEffect(() => {
-        const result = productIds.map((id: string) => {
-                return useGetProductById(id)         
-        })
-        Promise.all(result).then(res=>setProducts(res))
-    },[])  
+    
+    if(article.products){
+        const productIds = getProductIds(article.products);
+        useEffect(() => {
+            const result = productIds.map((id: string) => {
+                    return useGetProductById(id)         
+            })
+            Promise.all(result).then(res=>setProducts(res))
+        },[])      
+    }
+   
     return (
         <>
             <NextSeo
