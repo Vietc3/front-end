@@ -67,7 +67,7 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
             />
             <Article article={article} />
             <NextStories articles={articlesNextStories} />
-            <Products products={products}/>
+           {products? <Products products={products}/> :null}
         </>
     );
 };
