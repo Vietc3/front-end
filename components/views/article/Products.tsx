@@ -17,12 +17,8 @@ const Products = ({
 
     // items.push(articles[index])
     // items.push(articles[index === articles.length ? index-1 :index+1])
-console.log(products);
-
-
-
     return (
-        <>{products ? <><Box as="section" d='flex' pl={{ base: '0px', lg: "80px" }}
+        <>{products.length !==0 ? <><Box as="section" d='flex' pl={{ base: '0px', lg: "80px" }}
             pr={{ base: '0px', lg: "80px" }} >
             <chakra.h1
                 fontWeight="bold"
