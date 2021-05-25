@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Box } from '@chakra-ui/react';
+import { Box,Center,Text } from '@chakra-ui/react';
 import PostLastestCard from '../../cards/PostLastestCard';
 import { useGetArticles } from '../../../helpers/articles';
 import {useRecoilState} from 'recoil';
 import {SearchKeyword} from '../../../recoil/search'
-import { result } from "lodash";
-type Props = {
-    margin?: number;
-    containerHeight?: number;
-    articles?: any;
-}
 
 const SearchResult = () => {
     const [articles, setArticles] = useState([]);
@@ -25,7 +19,7 @@ const SearchResult = () => {
     return (
 
         <>
-            {  articles ? <Box d="flex" flexDirection={{ base: 'column', lg: 'row' }}>
+            {  articles.length!==0 ? <Box d="flex" flexDirection={{ base: 'column', lg: 'row' }}>
                 <Box pl={{ base: '0px', lg: "70px" }}
                     pr={{ base: '0px', lg: "70px" }} d="flex" flexDirection="column" flex="4" as="section" marginY={'.7em'}>
                     {articles.map((post: any) => (
@@ -34,7 +28,13 @@ const SearchResult = () => {
                         </Box>
                     ))}
                 </Box>
-            </Box> : "No result"}
+            </Box> : <Box pl={{ base: '0px', lg: "70px" }}
+                    pr={{ base: '0px', lg: "70px" }} d="flex" flexDirection="column" flex="4" as="section" marginY={'.7em'}>
+                 <Center>
+                     <Text fontWeight="bold" fontSize="xl">No result</Text>
+                     </Center>
+                </Box>
+           }
 
         </>
     );

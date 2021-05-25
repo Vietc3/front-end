@@ -78,7 +78,7 @@ export default function WithSubnavigation() {
         },
         onSubmit: async values => {
             setSearchKeyword(values.keyword);
-            setOpenSearch(!OpenSearch)
+            OpenSearch ? setOpenSearch(!OpenSearch) :null;
             onClick();
         },
     });
