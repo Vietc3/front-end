@@ -17,6 +17,7 @@ const Products = ({
 
     // items.push(articles[index])
     // items.push(articles[index === articles.length ? index-1 :index+1])
+console.log(products);
 
 
 
