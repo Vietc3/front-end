@@ -11,6 +11,7 @@ type Props = {
 };
 
 const VideosPage = ({ articles }: Props) => {
+    
     return (<>
             <VideoCard articles={articles}/>
             </>
