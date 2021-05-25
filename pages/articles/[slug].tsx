@@ -18,9 +18,18 @@ type Props = {
 };
 
 const PostDetail = ({ article, articlesNextStories }: Props) => {
+    
+    const router = useRouter();
+    if (router.isFallback) {
+        return <Box pl={{ base: '0px', lg: "70px" }}
+            pr={{ base: '0px', lg: "70px" }} d="flex" flexDirection="column" flex="4" as="section" marginY={'.7em'}>
+            <Center>
+                <Text fontWeight="bold" fontSize="xl">Loading Page</Text>
+            </Center>
+        </Box>
+    }
 
     const [products, setProducts] = useState<Array<any>>([]);
-
     if (article.products) {
         const productIds = getProductIds(article.products);
         useEffect(() => {
@@ -30,15 +39,8 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
             Promise.all(result).then(res => setProducts(res))
         }, [])
     }
-    const router = useRouter();
-    if (router.isFallback) {
-        return <> <Box pl={{ base: '0px', lg: "70px" }}
-            pr={{ base: '0px', lg: "70px" }} d="flex" flexDirection="column" flex="4" as="section" marginY={'.7em'}>
-            <Center>
-                <Text fontWeight="bold" fontSize="xl">No result</Text>
-            </Center>
-        </Box></>
-    }
+
+
     return (
         <>
             <NextSeo
@@ -98,7 +100,7 @@ export async function getStaticPaths() {
             }
         }
     })
-    return { paths, fallback: false }
+    return { paths, fallback: true }
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
