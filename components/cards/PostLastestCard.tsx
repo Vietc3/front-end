@@ -38,7 +38,7 @@ const PostLastestCard = ({isNextStory,
     const router = useRouter();
 
     const onClick = () => {
-        isNextStory ?  window.location.replace(`https://playitright.tv/articles/${post.id}`) : router.push(`/articles/${post.id}`); 
+        isNextStory ?  window.location.replace(`https://front-end-vietc3.vercel.app/articles/${post.id}`) : router.push(`/articles/${post.id}`); 
     };
 
     const [hover, setHover] = useState(false);
