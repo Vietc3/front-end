@@ -603,8 +603,8 @@ const NAV_ITEMS: Array<NavItem> = [
         label: 'VIDEOS',
         href: '/videos',
     },
-    {
-        label: 'PLAYITRIGHT STORE',
-        href: process.env.NEXT_PUBLIC_BASE_URL_SALES_PRODUCT
-    },
+    // {
+    //     label: 'PLAYITRIGHT STORE',
+    //     href: process.env.NEXT_PUBLIC_BASE_URL_SALES_PRODUCT
+    // },
 ];

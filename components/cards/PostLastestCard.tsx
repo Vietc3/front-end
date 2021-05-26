@@ -12,6 +12,7 @@ import { AiFillPlayCircle } from "react-icons/ai";
 import {getUrlImage} from '../../helpers/commonFuction';
 interface Props extends BoxProps {
     post: any;
+    isNextStory?: boolean;
     column?: boolean;
     height?: number | string;
     skeleton?: boolean;
@@ -21,7 +22,7 @@ interface Props extends BoxProps {
 
 type FlexDirection = 'row' | 'column' | undefined;
 
-const PostLastestCard = ({
+const PostLastestCard = ({isNextStory,
     post,
     column = false,
     imgBoxSize,
@@ -37,7 +38,7 @@ const PostLastestCard = ({
     const router = useRouter();
 
     const onClick = () => {
-        router.push(`/articles/${post.id}`);
+        isNextStory ?  window.location.replace(`https://playitright.tv/articles/${post.id}`) : router.push(`/articles/${post.id}`); 
     };
 
     const [hover, setHover] = useState(false);
@@ -88,7 +89,7 @@ const PostLastestCard = ({
             <Box w="100%" mt={{ base: 1, md: 2 }} ml={{ base: 5, md: 6 }}>
                 {
                     tags ? tags.map((tag: any) => (
-                        <Tag key={tag} mr={1} size="lg" bgColor="red" borderRadius="full">
+                        <Tag key={tag} mr={1} mt={1} size="lg" bgColor="red" borderRadius="full">
                             <TagLabel color="white" fontSize={{base:"xs",lg:"md"}}>{tag}</TagLabel>
                         </Tag>
                     )) : null

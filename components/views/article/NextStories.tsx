@@ -28,7 +28,7 @@ const NextStories = ({
                     {articles.map((post: any) => 
                         (
                             <Box key={post.title + post.id}>
-                                <PostLastestCard post={post} />
+                                <PostLastestCard isNextStory={true} post={post} />
                             </Box>
                         ))}
                 </Box>
