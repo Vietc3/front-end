@@ -30,6 +30,7 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
     }
 
     const [products, setProducts] = useState<Array<any>>([]);
+
     if (article.products) {
         const productIds = getProductIds(article.products);
         useEffect(() => {
@@ -37,8 +38,9 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                 return useGetProductById(id)
             })
             Promise.all(result).then(res => setProducts(res))
-        }, [])
+        }, [article])
     }
+
 
 
     return (
