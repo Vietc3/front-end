@@ -7,7 +7,7 @@ import {
 import { useFormik } from 'formik';
 import { toast } from "react-toastify";
 
-import { useUpdateSubcriber } from '../helpers/subcribers';
+import { useUpdateSubscriber } from '../helpers/subscribers';
 const NewsletterForm = () => {
 
     const formik = useFormik({
@@ -15,8 +15,8 @@ const NewsletterForm = () => {
             email: "",
         },
         onSubmit: async values => {
-            let result = await useUpdateSubcriber(values.email);
-            result === 200 ? toast.success("Subcriber Successfully") : toast.warning("Subcriber Failed")
+            let result = await useUpdateSubscriber(values.email);
+            result === 200 ? toast.success("Subscriber Successfully") : toast.warning("Subscribe Failed")
         },
     });
 
@@ -26,7 +26,7 @@ const NewsletterForm = () => {
                 Get the lastest updates about out stories.
             </Text>
             <Text color="white" fontWeight="bold" margin=".5rem">
-                Subcribe to our newsletter now!
+                Subscribe to our newsletter now!
             </Text>
             <chakra.form onSubmit={formik.handleSubmit}>
                 <Input id="email"

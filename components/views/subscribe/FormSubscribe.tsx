@@ -12,8 +12,8 @@ import {
 } from "@chakra-ui/react";
 import { useFormik } from 'formik';
 
-import {useSubcriber} from '../../../helpers/subcribers';
-const FormSubcribe = () => {
+import {useSubscriber} from '../../../helpers/subscribers';
+const FormSubscribe = () => {
     const formik = useFormik({
         initialValues: {
             email:"",
@@ -21,7 +21,7 @@ const FormSubcribe = () => {
             lastName:""
         },
         onSubmit: async values => {
-            useSubcriber(values)
+            useSubscriber(values)
         },
     });
 
@@ -182,4 +182,4 @@ const FormSubcribe = () => {
     )
 }
 
-export default FormSubcribe;
+export default FormSubscribe;

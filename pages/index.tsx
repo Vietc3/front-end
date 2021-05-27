@@ -1,7 +1,7 @@
 import React from 'react';
 import TrendingCard from '../components/views/homepage/Trending';
 import LastestCard from '../components/views/homepage/Lastest';
-import SubcribeForm from '../components/forms/SubscribeForm';
+import SubscribeForm from '../components/forms/SubscribeForm';
 import { GetStaticProps } from 'next';
 import { useGetArticles } from '../helpers/articles';
 import NewsletterForm from '../components/NewsletterForm';

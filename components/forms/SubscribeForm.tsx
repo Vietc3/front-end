@@ -19,7 +19,7 @@ import {
 } from "react-icons/fa";
 import { useFormik } from 'formik';
 
-const SubcribeForm = (/*{...props }*/) => {
+const SubscribeForm = (/*{...props }*/) => {
     const formik = useFormik({
         initialValues: {
             email:"",
@@ -47,7 +47,7 @@ const SubcribeForm = (/*{...props }*/) => {
                         Get the lastest updates about out stories.
                     </Text>
                     <Text color="primary" ml="1px" mt=".5rem" >
-                        Subcribe to our newsletter now!
+                        Subscribe to our newsletter now!
                     </Text>
                     <Spacer />
                     <chakra.form w="30%" onSubmit={formik.handleSubmit}>
@@ -62,7 +62,7 @@ const SubcribeForm = (/*{...props }*/) => {
                                     zIndex="15"
                                     p={2}
                                     leftIcon={<FaPaperPlane />} colorScheme="black" variant="solid">
-                                    SUBCRIBE
+                                    SUBSCRIBE
                           </Button>
                             </InputRightElement>
                             <Input
@@ -80,4 +80,4 @@ const SubcribeForm = (/*{...props }*/) => {
     );
 };
 
-export default SubcribeForm;
+export default SubscribeForm;

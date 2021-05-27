@@ -1,5 +1,5 @@
 
-import { Box, Heading, Flex, Icon, Tag, TagLabel, chakra, Link, Center,SimpleGrid } from '@chakra-ui/react';
+import { Box, Heading, Flex, Icon, Tag, TagLabel, chakra, Link, Center } from '@chakra-ui/react';
 import useColorTheme from '../../../hooks/useColorTheme';
 import Markdown from "markdown-to-jsx";
 import _ from 'lodash';
@@ -9,6 +9,8 @@ import YoutubeEmbed from '../../youtube/youtube'
 import { getUrlImage, formatDatePublic, getTags } from '../../../helpers/commonFuction';
 import { URL_BASE } from '../../../constants';
 import Image from '../../Image';
+import PhotosCard from './Carousel';
+
 
 type Props = {
     article: any;
@@ -24,10 +26,7 @@ const MyIMG = ({ children, ...props }: any) => {
         <Box >
             <Image
              data-aos="fade-left"
-                width={{ base: '100%', lg: '50%' }}
-                float="right"
-                height={{ base: "100%", lg: '100%' }} src={props.src}>{children}</Image>
-
+                src={props.src}>{children}</Image>
         </Box>
     );
 }
@@ -120,7 +119,7 @@ const Article = ({ article }: Props) => {
 
                 {article.youtube_url && article.youtube_url !== "" ? <Box h={{ base: '380px', md: '550', lg: '630px' }}>
                 <YoutubeEmbed youtube_url={article.youtube_url} />
-                </Box> : null}
+                </Box> : <PhotosCard photos={article.Photos}/>}
 
                 <Box pl={{ base: '0px', lg: "80px" }}
                 pr={{ base: '0px', lg: "80px" }} as="section" d="flex" flex="3">

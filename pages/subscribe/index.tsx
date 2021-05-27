@@ -1,13 +1,13 @@
 import React from 'react';
-import FormSubcribe from '../../components/views/subscribe/FormSubscribe';
+import FormSubscribe from '../../components/views/subscribe/FormSubscribe';
 
-const SubcribePage = () => {
+const SubscribePage = () => {
     return (  
     <>
-        <FormSubcribe/>
+        <FormSubscribe/>
     </>
     );
 };
 
 
-export default SubcribePage;
+export default SubscribePage;
