@@ -167,7 +167,7 @@ const FormSubscribe = () => {
                                    
                                 >
                                     <Button type="submit" borderRadius={30} colorScheme="red" variant="solid">
-                                        SUBRCRIBE
+                                        SUBSCRIBE
                                     </Button>
                                 </Center>
                             </Box>
