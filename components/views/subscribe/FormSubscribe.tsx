@@ -49,7 +49,7 @@ const FormSubscribe = () => {
                         shadow="base"
                         rounded={[null, "md"]}
                         overflow={{ sm: "hidden" }}
-                        h={{base:"auto",md:"auto",lg:"40vh"}}
+                        h={{base:"auto",md:"auto",lg:"50vh"}}
                         onSubmit={formik.handleSubmit}
                     >
                         <Center> <chakra.h1

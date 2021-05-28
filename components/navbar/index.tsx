@@ -134,7 +134,7 @@ export default function WithSubnavigation() {
                 <Flex display={{ base: 'none', lg: 'flex' }} pt={3} flex={{ base: 1 }} justify={{ base: 'center', md: 'end' }}>
                     <Spacer></Spacer>
                     <Button display={{ base: 'none', md: 'flex' }} onClick={() => onClickSubscribe()} borderRadius={30} colorScheme="red" variant="solid">
-                        SUBRCRIBE
+                    SUBSCRIBE
                     </Button>
                     <Spacer></Spacer>
                     <chakra.form w="40%" onSubmit={formik.handleSubmit}>
@@ -443,7 +443,7 @@ const MobileNav = ({ onClickSubscribe, onClickSocial, urlButtonSocial }: PropsMo
                 <MobileNavItem key={navItem.label} {...navItem} />
             ))}
             <Button display={{ base: 'flex' }} onClick={() => onClickSubscribe()} borderRadius={30} colorScheme="red" variant="solid">
-                SUBRCRIBE
+                SUBSCRIBE
             </Button>
             <HStack
                 spacing="0"
