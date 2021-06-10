@@ -66,13 +66,21 @@ const PostLastestCard = ({isNextStory,
                 width={{ base: '70%', lg:  '100%'  }}
                 height={{ base: "150px",md:"180px", lg: '300px' }}
             >
-                  <Image
-                    width="100%"
-                    height="100%"
+                 <div
+                        style={{
+                            position: 'relative',
+                            width: '100%',
+                            height: '100%',
+                            maxHeight: '100%',
+                            maxWidth: '100%',
+                        }}
+                    >   <Image
+                    style={{ width: "100%", height: "100%" }}
                     src={getUrlImage(post.hero_desktop.url)}
                     alt={'Photo of ' + post.title}
-                    objectFit="cover" 
-                />
+                    layout="fill"
+                   
+                /></div>
              
 
 
