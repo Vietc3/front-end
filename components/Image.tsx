@@ -8,9 +8,9 @@ const Image = ({ ...props }: Props) => {
 
     if (!isLoaded)
         return (
-            <Skeleton minHeight={props.minHeight || '100px'} height={'100%'} width={'100%'}>
+            // <Skeleton minHeight={props.minHeight || '100px'} height={'100%'} width={'100%'}>
                 <ChakraImage fallbackSrc="/placeholder-1-1.png"  {...props} />
-            </Skeleton>
+            // </Skeleton>
         );
 
     return <ChakraImage {...props} />;
