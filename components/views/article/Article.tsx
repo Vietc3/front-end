@@ -3,7 +3,7 @@ import { Box, Heading, Flex, Icon, Tag, TagLabel, chakra, Link, Center } from '@
 import useColorTheme from '../../../hooks/useColorTheme';
 import Markdown from "markdown-to-jsx";
 import _ from 'lodash';
-import Commento from '../../disqus/commento'
+import Commento from '../../commento/commento'
 import { BsCalendar, BsPencil } from "react-icons/bs";
 import YoutubeEmbed from '../../youtube/youtube'
 import { getUrlImage, formatDatePublic, getTags } from '../../../helpers/commonFuction';
