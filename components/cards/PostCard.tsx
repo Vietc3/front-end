@@ -20,7 +20,6 @@ const PostCard = ({ idArticle, article }: Props) => {
   const onClick = () => {
     router.push(`/articles/${idArticle}`);
   };
-  console.log(article);
   return (
     <Flex
       className="carousel"
@@ -41,7 +40,7 @@ const PostCard = ({ idArticle, article }: Props) => {
         w="full"
       >
         <Box w={{ lg: "100%" }} display={{base:'none',lg:'flex'}}  style={{
-                    backgroundImage: hover ? `url("${getUrlImage(article.hero_desktop.url)}`:`linear-gradient(rgba(245, 246, 252, 0.52), rgb(39 40 53 / 68%)),url("${getUrlImage(article.hero_desktop.url)}")`,
+                    backgroundImage: hover ? `url("${getUrlImage(article.hero_desktop.url)}`:`linear-gradient(rgb(106 95 107 / 37%), #2c333c),url("${getUrlImage(article.hero_desktop.url)}")`,
                     backgroundRepeat: 'no-repeat',
                     width: '100%',
                     backgroundSize: "cover"
@@ -58,7 +57,7 @@ const PostCard = ({ idArticle, article }: Props) => {
         <Box w={{ lg: "100%" }} display={{base:'flex',lg:'none'}}>
           <Image
             objectFit="cover"
-            src={article.hero_mobile.formats.small.url? getUrlImage(article.hero_mobile.formats.small.url) : getUrlImage(article.hero_mobile.formats.thumbnail.url)}
+            src={article.hero_mobile.formats.small ? getUrlImage(article.hero_mobile.formats.small.url) : getUrlImage(article.hero_mobile.formats.thumbnail.url)}
             maxHeight={'640px'}
             h={'400px'}
             w="100%"

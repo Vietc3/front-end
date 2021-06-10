@@ -40,18 +40,11 @@ const PostLastestCard = ({isNextStory,
     const onClick = () => {
         isNextStory ?  window.location.replace(`https://playitright.tv/articles/${post.id}`) : router.push(`/articles/${post.id}`); 
     };
-
     const [hover, setHover] = useState(false);
     const formatDatePublic = (datePublic: any) => {
         return moment(datePublic).format("Do MMM YY");
     }
-
     const tags = getTags(post.tags)
-
-    console.log(post.hero_mobile.formats)
-   
-    
-
     return (
         <Card
             onClick={() => onClick()}
@@ -83,7 +76,7 @@ const PostLastestCard = ({isNextStory,
                 <Image
                     width={{ base: '100%', lg:  '100%' }}
                     height={{ base: "100%", lg: '100%' }}
-                    src={post.hero_mobile.formats.small.url? getUrlImage(post.hero_mobile.formats.small.url) : getUrlImage(post.hero_mobile.formats.thumbnail.url)}
+                    src={post.hero_mobile.formats.small ? getUrlImage(post.hero_mobile.formats.small.url) : getUrlImage(post.hero_mobile.formats.thumbnail.url)}
                     alt={'Photo of ' + post.title}
                     objectFit="cover"
                    
