@@ -73,7 +73,7 @@ const PostCard = ({ idArticle, article }: Props) => {
         <HStack pl="10px" justify="center" pos="absolute" bottom="8px" w="full">
           <Box py={20} px={6} maxW={{ base: "xl", lg: "5xl" }} textAlign="center" w={{ lg: "80%" }}>
             <chakra.h1
-            data-aos="fade-left"
+            // data-aos="fade-left"
               fontSize={{ base: "2xl", md: "3xl" }}
               color="white"
               fontWeight="bold"
@@ -83,7 +83,7 @@ const PostCard = ({ idArticle, article }: Props) => {
             {/* <chakra.p mt={4} c color="white">
          {title}
           </chakra.p> */}
-            <Box textAlign="center" alignItems="center" px={6} py={3}  data-aos="fade-left">
+            <Box textAlign="center" alignItems="center" px={6} py={3}  >
               <Center>
                 <Flex>
                   <Icon as={BsCalendar} h={6} w={6} color="white" />
