@@ -21,8 +21,6 @@ const PostCard = ({ idArticle, article }: Props) => {
     router.push(`/articles/${idArticle}`);
   };
 
-console.log(article.hero_mobile.formats);
-
   return (
     <Flex
       className="carousel"
@@ -60,7 +58,7 @@ console.log(article.hero_mobile.formats);
         <Box w={{ lg: "100%" }} display={{base:'flex',lg:'none'}}>
           <Image
             objectFit="cover"
-            src={getUrlImage(article.hero_mobile.formats.thumbnail.url)}
+            src={getUrlImage(article.hero_mobile.formats.small.url)}
             maxHeight={'640px'}
             h={'400px'}
             w="100%"

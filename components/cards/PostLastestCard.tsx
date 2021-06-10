@@ -82,7 +82,7 @@ const PostLastestCard = ({isNextStory,
                 <Image
                     width={{ base: '100%', lg:  '100%' }}
                     height={{ base: "100%", lg: '100%' }}
-                    src={getUrlImage(post.hero_mobile.formats.thumbnail.url)}
+                    src={getUrlImage(post.hero_mobile.formats.small.url)}
                     alt={'Photo of ' + post.title}
                     objectFit="cover"
                    
