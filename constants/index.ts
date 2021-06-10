@@ -1,23 +1,3 @@
-
-export const NAVBAR_LINKS = [
-    {
-        to: '/',
-        name: 'Home',
-    },
-    {
-        to: '/',
-        name: 'Magazine',
-    },
-    {
-        to: '/',
-        name: 'Sports',
-    },
-    {
-        to: '/',
-        name: 'Economy',
-    },
-];
-
 export const FOOTER_LINKS = [
     {
         heading: 'About Us',
