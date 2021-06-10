@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { chakra, HStack, Box, Flex, useColorModeValue, FlexProps, Icon, Center, Spacer } from '@chakra-ui/react';
-import Image from '../Image';
+// import Image from '../Image';
 import { useRouter } from 'next/router';
 import { BsCalendar, BsPencil } from 'react-icons/bs';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { getUrlImage, formatDatePublic } from '../../helpers/commonFuction';
-// import Image from 'next/image';
+import Image from 'next/image';
 
 interface Props extends FlexProps {
     alt: string;
@@ -40,11 +40,11 @@ const PostCard = ({ idArticle, article }: Props) => {
             >
                 <Box
                     w={{ lg: '100%' }}
-                    display={{ base: 'none', lg: 'flex' }}
+                    display={{ base: 'none', md: 'none', lg: 'flex' }}
                     style={{
                         backgroundImage: hover
                             ? `url("${getUrlImage(article.hero_desktop.url)}`
-                            : `linear-gradient(rgba(245, 246, 252, 0.52), rgb(39 40 53 / 68%)),url("${getUrlImage(
+                            : `linear-gradient(rgb(106 95 107 / 37%), #2c333c),url("${getUrlImage(
                                   article.hero_desktop.url,
                               )}")`,
                         backgroundRepeat: 'no-repeat',
@@ -58,17 +58,7 @@ const PostCard = ({ idArticle, article }: Props) => {
                     pr={{ base: '0px', lg: '80px' }}
                 ></Box>
 
-                <Box w={{ lg: '100%' }} display={{ base: 'flex', lg: 'none' }}>
-                    <Image
-                        objectFit="cover"
-                        src={getUrlImage(article.hero_mobile.url)}
-                        maxHeight={'640px'}
-                        h={'400px'}
-                        w="100%"
-                    />
-                </Box>
-
-                {/* <Box w="100%" display={{ base: 'flex', lg: 'none' }}>
+                <Box w="100%" display={{ base: 'flex', lg: 'none' }}>
                     <div
                         style={{
                             position: 'relative',
@@ -89,7 +79,7 @@ const PostCard = ({ idArticle, article }: Props) => {
                             }}
                         />
                     </div>
-                </Box> */}
+                </Box>
 
                 <HStack pl="10px" justify="center" pos="absolute" bottom="8px" w="full">
                     <Box py={20} px={6} maxW={{ base: 'xl', lg: '5xl' }} textAlign="center" w={{ lg: '80%' }}>
