@@ -44,7 +44,7 @@ const PostCard = ({ idArticle, article }: Props) => {
 
       >
         <Box w={{ lg: "100%" }} display={{base:'none',lg:'flex'}}  style={{
-                    backgroundImage: hover ? `url("${getUrlImage(article.hero_desktop.url)}`:`linear-gradient(rgba(245, 246, 252, 0.52), rgb(39 40 53 / 68%)),url("${getUrlImage(article.hero_desktop.url)}")`,
+                    backgroundImage: hover ? `url("${getUrlImage(article.hero_desktop.url)}`:`linear-gradient(rgb(0 0 0 / 0%), rgb(0 0 0 / 82%)),url("${getUrlImage(article.hero_desktop.url)}")`,
                     backgroundRepeat: 'no-repeat',
                     width: '100%',
                     backgroundSize: "cover"
