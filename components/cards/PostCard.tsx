@@ -58,7 +58,7 @@ const PostCard = ({ idArticle, article }: Props) => {
                     pr={{ base: '0px', lg: '80px' }}
                 ></Box>
 
-                <Box w="100%" display={{ base: 'flex', lg: 'none' }}>
+                {/* <Box w="100%" display={{ base: 'flex', lg: 'none' }}>
                     <div
                         style={{
                             position: 'relative',
@@ -79,7 +79,7 @@ const PostCard = ({ idArticle, article }: Props) => {
                             }}
                         />
                     </div>
-                </Box>
+                </Box> */}
 
                 <HStack pl="10px" justify="center" pos="absolute" bottom="8px" w="full">
                     <Box py={20} px={6} maxW={{ base: 'xl', lg: '5xl' }} textAlign="center" w={{ lg: '80%' }}>
