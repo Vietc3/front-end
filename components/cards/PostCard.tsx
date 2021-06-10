@@ -57,7 +57,7 @@ const PostCard = ({ idArticle, article }: Props) => {
         <Box w={{ lg: "100%" }} display={{base:'flex',lg:'none'}}>
           <Image
             objectFit="cover"
-            src={article.hero_mobile.formats.small ? getUrlImage(article.hero_mobile.formats.small.url) : getUrlImage(article.hero_mobile.formats.thumbnail.url)}
+            src={getUrlImage(article.hero_mobile.url)}
             maxHeight={'640px'}
             h={'400px'}
             w="100%"

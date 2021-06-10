@@ -76,12 +76,10 @@ const PostLastestCard = ({isNextStory,
                 <Image
                     width={{ base: '100%', lg:  '100%' }}
                     height={{ base: "100%", lg: '100%' }}
-                    src={post.hero_mobile.formats.small ? getUrlImage(post.hero_mobile.formats.small.url) : getUrlImage(post.hero_mobile.formats.thumbnail.url)}
+                    src={post.hero_mobile.url}
                     alt={'Photo of ' + post.title}
                     objectFit="cover"
-                   
                 />
-
 
                 {post.youtube_url ? <HStack pl="10px" justify="left" pos="absolute" bottom="20px" width={{ base: '100%', lg: column ? '100%' : 60 }}>
                     <Icon mr="10px" as={AiFillPlayCircle} h='50px' w='50px' color="white" />
