@@ -13,6 +13,7 @@ interface Props extends FlexProps {
   article: any
 }
 
+
 const PostCard = ({ idArticle, article }: Props) => {
   const [hover, setHover] = useState(false);
   const router = useRouter();
@@ -20,10 +21,11 @@ const PostCard = ({ idArticle, article }: Props) => {
     router.push(`/articles/${idArticle}`);
   };
 
-
+console.log(article.hero_mobile.formats);
 
   return (
     <Flex
+      className="carousel"
       bg={useColorModeValue("white", "gray.800")}
       w="100%"
       h="100%"
@@ -37,10 +39,8 @@ const PostCard = ({ idArticle, article }: Props) => {
         bg={useColorModeValue("white", "gray.800")}
         mx='0'
         display={{ lg: "flex" }}
-        // shadow={{ lg: "lg" }}
         rounded={{ lg: "lg" }}
         w="full"
-
       >
         <Box w={{ lg: "100%" }} display={{base:'none',lg:'flex'}}  style={{
                     backgroundImage: hover ? `url("${getUrlImage(article.hero_desktop.url)}`:`linear-gradient(rgba(245, 246, 252, 0.52), rgb(39 40 53 / 68%)),url("${getUrlImage(article.hero_desktop.url)}")`,
@@ -60,7 +60,7 @@ const PostCard = ({ idArticle, article }: Props) => {
         <Box w={{ lg: "100%" }} display={{base:'flex',lg:'none'}}>
           <Image
             objectFit="cover"
-            src={getUrlImage(article.hero_mobile.url)}
+            src={getUrlImage(article.hero_mobile.formats.thumbnail.url)}
             maxHeight={'640px'}
             h={'400px'}
             w="100%"

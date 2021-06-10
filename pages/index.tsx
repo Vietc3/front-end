@@ -17,7 +17,7 @@ const IndexPage = ({ articles, featured }: Props) => {
   const [items, setItems] = useState<Array<any>>(articles);
   const [start, setStart] = useState(0);
   const [isShow, setIsShow] = useState(true);
-  const defaultAticlesShowed = 20;
+  const defaultAticlesShowed = 10;
   const handelLoadMore=  (result:any)=>{ setIsShow(false); setItems(pre => {return [...pre,...result]}) } 
   useEffect(() => {
     if(start===0) return;
@@ -69,7 +69,7 @@ const IndexPage = ({ articles, featured }: Props) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
-  const defaultAticlesShowed = 20;
+  const defaultAticlesShowed = 10;
   try {
     let data = await useGetArticles(`featured=false&_sort=public_date:DESC&_start=0&_limit=${defaultAticlesShowed}`);
     let dataFeatured = await useGetArticles('featured=true');

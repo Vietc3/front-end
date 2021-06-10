@@ -72,13 +72,21 @@ const PostLastestCard = ({isNextStory,
                 height={{ base: "150px",md:"180px", lg: '300px' }}
             >
                 <Image
-                    width={{ base: '100%', lg:  '100%' }}
-                    height={{ base: "100%", lg: '100%' }}
+                    width="100%"
+                    height="100%"
                     src={getUrlImage(post.hero_desktop.url)}
                     alt={'Photo of ' + post.title}
                     objectFit="cover"
                    
-                ></Image>
+                />
+                <Image
+                    width={{ base: '100%', lg:  '100%' }}
+                    height={{ base: "100%", lg: '100%' }}
+                    src={getUrlImage(post.hero_mobile.formats.thumbnail.url)}
+                    alt={'Photo of ' + post.title}
+                    objectFit="cover"
+                   
+                />
 
 
                 {post.youtube_url ? <HStack pl="10px" justify="left" pos="absolute" bottom="20px" width={{ base: '100%', lg: column ? '100%' : 60 }}>
