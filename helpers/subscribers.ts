@@ -15,7 +15,7 @@ export const useSubscriber = async (user: any) => {
             },
             body: JSON.stringify(user)
         })
-        response.status === 200 ? toast.success("Subscriber Successfully") : toast.warning("Subscriber Failed") 
+        response.status === 200 ? null : toast.warning("Subscriber Failed") 
         return response.status
     } else return  toast.warning("Email already registered")
 }
