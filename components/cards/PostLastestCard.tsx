@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, BoxProps, Text, useBreakpointValue, HStack, Tag, Icon, TagLabel, Flex, chakra } from '@chakra-ui/react';
 import useColorTheme from '../../hooks/useColorTheme';
-// import Image from '../Image';
+import Image from '../Image';
 import Card from './Card';
 import _ from 'lodash';
 import { useRouter } from 'next/router';
@@ -10,7 +10,6 @@ import moment from 'moment';
 import {getTags} from '../../helpers/commonFuction';
 import { AiFillPlayCircle } from "react-icons/ai";
 import {getUrlImage} from '../../helpers/commonFuction';
-import Image from 'next/image';
 interface Props extends BoxProps {
     post: any;
     isNextStory?: boolean;
@@ -41,11 +40,17 @@ const PostLastestCard = ({isNextStory,
     const onClick = () => {
         isNextStory ?  window.location.replace(`https://playitright.tv/articles/${post.id}`) : router.push(`/articles/${post.id}`); 
     };
+
     const [hover, setHover] = useState(false);
     const formatDatePublic = (datePublic: any) => {
         return moment(datePublic).format("Do MMM YY");
     }
+
     const tags = getTags(post.tags)
+
+   
+    
+
     return (
         <Card
             onClick={() => onClick()}
@@ -66,34 +71,15 @@ const PostLastestCard = ({isNextStory,
                 width={{ base: '70%', lg:  '100%'  }}
                 height={{ base: "150px",md:"180px", lg: '300px' }}
             >
-                 <div
-                        style={{
-                            position: 'relative',
-                            width: '100%',
-                            height: '100%',
-                            maxHeight: '100%',
-                            maxWidth: '100%',
-                        }}
-                    >   <Image
-                    style={{ width: "100%", height: "100%" }}
+                <Image
+                    width={{ base: '100%', lg:  '100%' }}
+                    height={{ base: "100%", lg: '100%' }}
                     src={getUrlImage(post.hero_desktop.url)}
                     alt={'Photo of ' + post.title}
-                    layout="fill"
+                    objectFit="cover"
                    
-                /></div>
-             
+                ></Image>
 
-
-                {/* <Image
-                layout="fill"
-                src={post.hero_mobile.url}
-                style={{
-                    width: '100%',
-                    height: '100%',
-                    maxHeight: '400px',
-                    maxWidth: '100vw',
-                }}
-                /> */}
 
                 {post.youtube_url ? <HStack pl="10px" justify="left" pos="absolute" bottom="20px" width={{ base: '100%', lg: column ? '100%' : 60 }}>
                     <Icon mr="10px" as={AiFillPlayCircle} h='50px' w='50px' color="white" />

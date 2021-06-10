@@ -151,7 +151,6 @@ const Article = ({ article }: Props) => {
                 pt={'50px'}
                 pl={{ base: '0px', lg: "160px" }}
                 pr={{ base: '0px', lg: "160px" }}>
-                {/* <DisqusComments post={article} /> */}
                 <Commento id={article.id} />
             </Box>
 

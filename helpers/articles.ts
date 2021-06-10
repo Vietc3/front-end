@@ -4,7 +4,7 @@ const URL_BASE_ARTICLES = URL_BASE+'/articles'
 
 export const useGetArticles = async (filters:string) => {
      const data = await fetch(URL_BASE_ARTICLES+`?${filters}`)
-     return await data.json()
+     return data.json()
 }
 
 export const useGetAllArticles = async () => {
