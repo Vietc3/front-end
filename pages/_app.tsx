@@ -1,7 +1,6 @@
 // import App from "next/app";
 import type { AppProps /*, AppContext */ } from 'next/app';
 import '../styles/index.css';
-import { Fonts } from '../fonts';
 import { Chakra } from '../Chakra';
 import Layout from '../components/Layout';
 import React, {useEffect, useState } from 'react';
@@ -46,8 +45,6 @@ function Application({ Component, pageProps }: AppProps) {
                         <BounceLoader css={override} size={70} color='#A8A248' loading />
                     </ModalOverlay>
                 </Modal>
-            <Fonts />
-            
             <Component {...pageProps} />
             </Layout>
            
