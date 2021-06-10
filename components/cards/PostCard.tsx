@@ -20,7 +20,7 @@ const PostCard = ({ idArticle, article }: Props) => {
   const onClick = () => {
     router.push(`/articles/${idArticle}`);
   };
-
+  console.log(article);
   return (
     <Flex
       className="carousel"
@@ -58,7 +58,7 @@ const PostCard = ({ idArticle, article }: Props) => {
         <Box w={{ lg: "100%" }} display={{base:'flex',lg:'none'}}>
           <Image
             objectFit="cover"
-            src={getUrlImage(article.hero_mobile.formats.small.url)}
+            src={article.hero_mobile.formats.small.url? getUrlImage(article.hero_mobile.formats.small.url) : getUrlImage(article.hero_mobile.formats.thumbnail.url)}
             maxHeight={'640px'}
             h={'400px'}
             w="100%"

@@ -11,8 +11,6 @@ type Props = {
 const LastestCard = ({
     articles,
 }: Props) => {
-
-
     
     return (
         <>
