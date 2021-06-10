@@ -9,7 +9,7 @@ const Image = ({ ...props }: Props) => {
     if (!isLoaded)
         return (
             <Skeleton minHeight={props.minHeight || '100px'} height={'100%'} width={'100%'}>
-                <ChakraImage onLoadCapture={() => setIsLoaded(true)} {...props} />
+                <ChakraImage fallbackSrc="/placeholder-1-1.png"  {...props} />
             </Skeleton>
         );
 
