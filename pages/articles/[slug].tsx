@@ -85,7 +85,7 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                 description="This is a mighty good description of this article."
             />
             <Article article={article} />
-            <NextStories articles={articlesNextStories} />
+            <NextStories articleId={article.id} articles={articlesNextStories} />
             {products ? <Products products={products} /> : null}
         </>
     );
@@ -109,7 +109,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     try {
         const slug = params?.slug;
         let data = await useGetArticleById(slug);
-        let dataNextStories = await useGetArticles(`id_ne=${slug}&_sort=public_date:DESC&_limit=2`);
+        let dataNextStories = await useGetArticles(`id_ne=${slug}&_sort=public_date:DESC&_start=0&_limit=2`);
         return { props: { article: data, articlesNextStories: dataNextStories }, revalidate: 10 };
     } catch (err) {
         return { props: { errors: err.message } };

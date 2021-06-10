@@ -1,5 +1,5 @@
 import React from "react";
-import { Box} from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import PostLastestCard from '../../cards/PostLastestCard';
 
 type Props = {
@@ -11,6 +11,9 @@ type Props = {
 const LastestCard = ({
     articles,
 }: Props) => {
+
+
+    
     return (
         <>
             <Box d="flex" flexDirection={{ base: 'column', lg: 'row' }}>
@@ -22,7 +25,9 @@ const LastestCard = ({
                         </Box>
                     ))}
                 </Box>
+           
             </Box>
+         
         </>
     );
 };

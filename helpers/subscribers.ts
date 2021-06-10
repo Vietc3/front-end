@@ -18,5 +18,8 @@ export const useSubscriber = async (user: any) => {
         response.status === 200 ? toast.success("Subscriber Successfully") : toast.warning("Subscriber Failed") 
         return response.status
     } else return  toast.warning("Email already registered")
-
+}
+export const useGetContentSubscribe = async () => {
+    const data = await fetch(URL_BASE+`/subscribe-page`)
+    return data.json()
 }

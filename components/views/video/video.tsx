@@ -1,57 +1,70 @@
-import React, { useState, useEffect,useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Box, Center, Button } from '@chakra-ui/react';
 import PostLastestCard from '../../cards/PostLastestCard';
 import { useGetArticles } from '../../../helpers/articles'
-type Props = {
-    margin?: number;
-    containerHeight?: number;
-    articles: any;
-}
 
-const VideoCard = ({
-    articles,
-}: Props) => {
 
-    const [isFetching, setIsFetching] = useState(false);
+const VideoCard = () => {
+
     const [items, setItems] = useState<Array<any>>([]);
-    const page = useRef(0);
-    const limit = 3;
-    const total = articles.length;
+    const [start, setStart] = useState(0);
+    const [isShow, setIsShow] = useState(true);
+    const defaultAticlesShowed =20;
+    const handelLoadMore=  (result:any)=>{ setIsShow(false); setItems(pre => {return [...pre,...result]}) } 
+    useEffect(() => {
+      if(start===0) return;
+      useGetArticles(`youtube_url_ne=&_sort=public_date:DESC&_start=${start}&_limit=${defaultAticlesShowed}`).then(
+          (result) => {
+            result.length === 0 || result.length <defaultAticlesShowed ? handelLoadMore(result): setItems(pre => {return [...pre,...result]})
+          }
+      )
+  }, [start])
 
-    const handleScroll = () => {
-        if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight)
-            return;
-        else {
-            page.current++;
-            setIsFetching(true);
+  useEffect(() => {
+    useGetArticles(`youtube_url_ne=&_sort=public_date:DESC&_start=${start}&_limit=${defaultAticlesShowed}`).then(
+        (result) => {
+            setItems(result);
         }
-    };
+    )
+}, [])
+    
 
-    useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    // const [isFetching, setIsFetching] = useState(false);
+    // const [items, setItems] = useState<Array<any>>([]);
+    // const page = useRef(0);
+    // const limit = 3;
+    // const total = articles.length;
 
-    useEffect(() => {
-        if (!isFetching) return;
-        if (total <= items.length) { setIsFetching(false) 
-            return; };
-        useGetArticles(`youtube_url_ne=&_start=${limit *page.current}&_limit=${limit}`).then(
-            (result) => {
-                const newItem = [...items, ...result]
-                setItems(newItem);
-                setIsFetching(false);
-            }
-        )
-    }, [isFetching]);
+    // const handleScroll = () => {
+    //     if (window.innerHeight + document.documentElement.scrollTop !== document.documentElement.offsetHeight)
+    //         return;
+    //     else {
+    //         page.current++;
+    //         setIsFetching(true);
+    //     }
+    // };
 
-    useEffect(() => {
-        useGetArticles(`youtube_url_ne=&_start=0&_limit=${limit}`).then(
-            (result) => {
-                setItems(result);
-            }
-        )
-    }, [])
+    // useEffect(() => {
+    //     window.addEventListener("scroll", handleScroll);
+    //     return () => window.removeEventListener("scroll", handleScroll);
+    // }, []);
+
+    // useEffect(() => {
+    //     if (!isFetching) return;
+    //     if (total <= items.length) {
+    //         setIsFetching(false)
+    //         return;
+    //     };
+    //     useGetArticles(`youtube_url_ne=&_sort=public_date:DESC&_start=${limit * page.current}&_limit=${limit}`).then(
+    //         (result) => {
+    //             const newItem = [...items, ...result]
+    //             setItems(newItem);
+    //             setIsFetching(false);
+    //         }
+    //     )
+    // }, [isFetching]);
+
+
 
     return (
         <>
@@ -65,11 +78,12 @@ const VideoCard = ({
                     ))}
                 </Box>
             </Box>
-            {isFetching && <Center h="100px" color="black">
-                <Button colorScheme="black" variant="outline">
-                    Loading More
-                </Button>
+            {isShow && items.length>=defaultAticlesShowed && <Center h="100px" color="red">
+                <Button onClick={() => setStart(pre => pre + defaultAticlesShowed)} borderRadius={30} colorScheme="red" variant="outline">
+                    Load More
+            </Button>
             </Center>}
+
         </>
     );
 };

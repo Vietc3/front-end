@@ -13,6 +13,10 @@ export const getProductIds = (ids: string) => {
     return ids.split(',')
 }
 
+export const getInterested = (ids: string) => { 
+    return ids.split(',')
+}
+
 export const formatDatePublic = (datePublic: any) => {
     return moment(datePublic).format("Do MMM YY");
 }

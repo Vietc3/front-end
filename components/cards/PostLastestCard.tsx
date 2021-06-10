@@ -48,6 +48,9 @@ const PostLastestCard = ({isNextStory,
 
     const tags = getTags(post.tags)
 
+   
+    
+
     return (
         <Card
             onClick={() => onClick()}

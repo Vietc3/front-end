@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { useEffect, useMemo, useState } from "react";
 import TrendingCard from '../components/views/homepage/Trending';
 import LastestCard from '../components/views/homepage/Lastest';
-import SubscribeForm from '../components/forms/SubscribeForm';
 import { GetStaticProps } from 'next';
 import { useGetArticles } from '../helpers/articles';
-import NewsletterForm from '../components/NewsletterForm';
-
-import { Box } from '@chakra-ui/react';
-import { NextSeo } from 'next-seo'
+import { NextSeo } from 'next-seo';
+import { Center, Button } from '@chakra-ui/react';
 
 type Props = {
   featured?: any;
@@ -16,6 +13,21 @@ type Props = {
 };
 
 const IndexPage = ({ articles, featured }: Props) => {
+
+  const [items, setItems] = useState<Array<any>>(articles);
+  const [start, setStart] = useState(0);
+  const [isShow, setIsShow] = useState(true);
+  const defaultAticlesShowed = 20;
+  const handelLoadMore=  (result:any)=>{ setIsShow(false); setItems(pre => {return [...pre,...result]}) } 
+  useEffect(() => {
+    if(start===0) return;
+    useGetArticles(`featured=false&_sort=public_date:DESC&_start=${start}&_limit=${defaultAticlesShowed}`).then(
+        (result) => {
+          result.length === 0 || result.length <defaultAticlesShowed ? handelLoadMore(result): setItems(pre => {return [...pre,...result]})
+        }
+    )
+}, [start])
+
   return (<>
     <NextSeo
       title="Home"
@@ -44,21 +56,22 @@ const IndexPage = ({ articles, featured }: Props) => {
       }}
     />
     <TrendingCard articles={featured} />
-    <LastestCard articles={articles} />
-    {/* <Box w="100%" display={{ base: "none", lg: "flex" }}>
-      <SubcribeForm marginY="10px" />
-    </Box>
-    <Box w="100%" display={{ base: "flex", lg: "none" }}>
-      <NewsletterForm />
-    </Box> */}
+   
+    <LastestCard articles={items} />
+    {isShow && <Center h="100px" color="red">
+      <Button onClick={()=>setStart(pre=>pre+defaultAticlesShowed)} borderRadius={30} colorScheme="red" variant="outline">
+        Load More
+      </Button>
+    </Center>}
 
   </>
   );
 };
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
+  const defaultAticlesShowed = 20;
   try {
-    let data = await useGetArticles('featured=false&_sort=public_date:DESC&_limit=4');
+    let data = await useGetArticles(`featured=false&_sort=public_date:DESC&_start=0&_limit=${defaultAticlesShowed}`);
     let dataFeatured = await useGetArticles('featured=true');
 
     return { props: { articles: data, featured: dataFeatured }, revalidate: 10 };
