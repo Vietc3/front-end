@@ -38,7 +38,7 @@ const PostCard = ({ idArticle, article }: Props) => {
                 rounded={{ lg: 'lg' }}
                 w="full"
             >
-                {/* <Box
+                <Box
                     w={{ lg: '100%' }}
                     display={{ base: 'none', md: 'none', lg: 'flex' }}
                     style={{
@@ -56,7 +56,7 @@ const PostCard = ({ idArticle, article }: Props) => {
                     h={{ base: '350px', lg: '660px' }}
                     pl={{ base: '0px', lg: '80px' }}
                     pr={{ base: '0px', lg: '80px' }}
-                ></Box> */}
+                ></Box>
 
                 <Box w="100%" display={{ base: 'flex', lg: 'none' }}>
                     <div
