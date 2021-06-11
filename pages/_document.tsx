@@ -106,10 +106,6 @@ export default class Document extends NextDocument {
             <Html>
                 <HeadCustom>
                 <link rel="shortcut icon" href="/static/favicon.ico" />
-                <script dangerouslySetInnerHTML={{ __html: `https://gist.github.com/bravetheheat/d0eeb93c15d689d769b3194629ce36ab.js` }} />
-                {/* <script type="text/javascript" 
-                
-                src="https://gist.github.com/bravetheheat/d0eeb93c15d689d769b3194629ce36ab.js"></script> */}
                 </HeadCustom>
                 <body>
                     <ColorModeScript initialColorMode="light" />
