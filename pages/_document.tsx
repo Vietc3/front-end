@@ -1,84 +1,99 @@
 import NextDocument, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 import { ColorModeScript } from '@chakra-ui/react';
+import React from 'react';
+import { compact, flatten } from 'lodash';
 
-function dedupe<T extends { file: string }>(bundles: T[]): T[] {
-    const files = new Set<string>();
-    const kept: T[] = [];
-  
-    for (const bundle of bundles) {
-      if (files.has(bundle.file)) continue;
-      files.add(bundle.file);
-      kept.push(bundle);
+class HeadCustom extends Head {
+    // https://github.com/zeit/next.js/blob/d467e040d51ce1f8d2bf050d729677b6dd99cb96/packages/next/pages/_document.tsx#L187
+    getCssLinks(files) {
+        const { assetPrefix } = this.context;
+        const cssFiles = files && files.allFiles && files.allFiles.length ? files.allFiles.filter((f) => /\.css$/.test(f)) : [];
+        const cssLinkElements = [];
+        cssFiles.forEach((file) => {
+            cssLinkElements.push(
+                <link
+                    key={file}
+                    nonce={this.props.nonce}
+                    rel="stylesheet"
+                    href={`${assetPrefix}/_next/${encodeURI(file)}`}
+                    crossOrigin={this.props.crossOrigin || process ? process.crossOrigin : false}
+                />,
+            );
+        });
+
+        return cssLinkElements.length === 0 ? null : cssLinkElements;
     }
-    return kept;
-  }
+
+    getPreloadMainLinks() {
+        return [];
+    }
+
+    getPreloadDynamicChunks() {
+        return [];
+    }
+}
+
+class NextScriptCustom extends NextScript {
+    render() {
+      const orgNextScripts = flatten(super.render().props.children);
   
-  type DocumentFiles = {
-    sharedFiles: readonly string[];
-    pageFiles: readonly string[];
-    allFiles: readonly string[];
-  };
+      const scripts = compact(
+        orgNextScripts.map((child) => {
+          if (child.props.id === '__NEXT_DATA__') {
+            return {
+              props: { ...child.props },
+              content: child.props.dangerouslySetInnerHTML.__html
+            };
+          }
   
-  /**
-   * Custom NextScript to defer loading of unnecessary JS.
-   * Standard behavior is async. Compatible with Next.js 10.0.3
-   */
-  class DeferNextScript extends NextScript {
-    getDynamicChunks(files: DocumentFiles) {
-      const {
-        dynamicImports,
-        assetPrefix,
-        isDevelopment,
-        devOnlyCacheBusterQueryString,
-      } = this.context;
+          if (child?.type === 'script') {
+            return {
+              props: { ...child.props },
+              content: ''
+            };
+          }
   
-      return dedupe(dynamicImports).map((bundle) => {
-        if (!bundle.file.endsWith('.js') || files.allFiles.includes(bundle.file))
           return null;
-  
-        return (
-          <script
-            defer={!isDevelopment}
-            key={bundle.file}
-            src={`${assetPrefix}/_next/${encodeURI(
-              bundle.file
-            )}${devOnlyCacheBusterQueryString}`}
-            nonce={this.props.nonce}
-            crossOrigin={
-              this.props.crossOrigin || process.env.__NEXT_CROSS_ORIGIN
-            }
-          />
-        );
-      });
-    }
-    getScripts(files: DocumentFiles) {
-      const {
-        assetPrefix,
-        buildManifest,
-        isDevelopment,
-        devOnlyCacheBusterQueryString,
-      } = this.context;
-  
-      const normalScripts = files.allFiles.filter((file) => file.endsWith('.js'));
-      const lowPriorityScripts = buildManifest.lowPriorityFiles?.filter((file) =>
-        file.endsWith('.js')
+        })
       );
   
-      return [...normalScripts, ...lowPriorityScripts].map((file) => {
-        return (
-          <script
-            key={file}
-            src={`${assetPrefix}/_next/${encodeURI(
-              file
-            )}${devOnlyCacheBusterQueryString}`}
-            nonce={this.props.nonce}
-            defer={!isDevelopment}
-            crossOrigin={
-              this.props.crossOrigin || process.env.__NEXT_CROSS_ORIGIN
+      const initialFilterer = props => !props.src || !props.src.includes('chunk');
+      const initialLoadScripts = scripts.filter(({ props }) => initialFilterer(props));
+      const chunkedScripts = scripts.filter(({ props }) => !initialFilterer(props));
+  
+      const jsContent = `
+        var chunkedScripts = ${JSON.stringify(chunkedScripts)};
+        setTimeout(() => {
+          chunkedScripts.map((script) => {
+            if (!script || !script.props) return;
+            try {
+              var scriptTag = document.createElement('script');
+    
+              scriptTag.src = script.props.src;
+              scriptTag.async = script.props.async;
+              scriptTag.defer = script.props.defer;
+              
+              if (script.props.id) scriptTag.id = script.props.id;
+              if (script.content) scriptTag.innerHTML = script.content;
+              document.body.appendChild(scriptTag);
             }
-          />
-        );
-      });
+            catch(err) {
+              console.log(err);
+            }
+          });
+        // 1800ms seems like when PageSpeed Insights stop waiting for more js       
+        }, 1800);
+      `;
+  
+      return (
+        <>
+          {initialLoadScripts.map(({ props }) => (
+            <script key={props.id} {...props} src={props.src} />
+          ))}
+  
+          <script id="__NEXT_SCRIPT_CUSTOM" defer dangerouslySetInnerHTML={{ __html: jsContent }} />
+        </>
+      );
     }
   }
 export default class Document extends NextDocument {
@@ -89,17 +104,17 @@ export default class Document extends NextDocument {
     render() {
         return (
             <Html>
-                <Head>
+                <HeadCustom>
                 <link rel="shortcut icon" href="/static/favicon.ico" />
                 <script dangerouslySetInnerHTML={{ __html: `https://gist.github.com/bravetheheat/d0eeb93c15d689d769b3194629ce36ab.js` }} />
                 {/* <script type="text/javascript" 
                 
                 src="https://gist.github.com/bravetheheat/d0eeb93c15d689d769b3194629ce36ab.js"></script> */}
-                </Head>
+                </HeadCustom>
                 <body>
                     <ColorModeScript initialColorMode="light" />
                     <Main />
-                   <DeferNextScript/>
+                   <NextScriptCustom/>
                 </body>
             </Html>
         );
