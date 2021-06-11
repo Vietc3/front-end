@@ -12,9 +12,9 @@ type Props = {
   errors?: string;
 };
 
-const IndexPage = ({ articles, featured }: Props) => {
+const IndexPage = ({ featured }: Props) => {
 
-  const [items, setItems] = useState<Array<any>>(articles);
+  const [items, setItems] = useState<Array<any>>([]);
   const [start, setStart] = useState(0);
   const [isShow, setIsShow] = useState(true);
   const defaultAticlesShowed = 4;
@@ -27,6 +27,14 @@ const IndexPage = ({ articles, featured }: Props) => {
         }
     )
 }, [start])
+
+useEffect(() => {
+  useGetArticles(`featured=false&_sort=public_date:DESC&_start=${start}&_limit=${defaultAticlesShowed}`).then(
+      (result) => {
+        result.length === 0 || result.length <defaultAticlesShowed ? handelLoadMore(result): setItems(pre => {return [...pre,...result]})
+      }
+  )
+}, [])
 
   return (<>
     <NextSeo
@@ -69,12 +77,11 @@ const IndexPage = ({ articles, featured }: Props) => {
 };
 
 export const getStaticProps: GetStaticProps = async (context: any) => {
-  const defaultAticlesShowed = 4;
   try {
-    let data = await useGetArticles(`featured=false&_sort=public_date:DESC&_start=0&_limit=${defaultAticlesShowed}`);
+    // let data = await useGetArticles(`featured=false&_sort=public_date:DESC&_start=0&_limit=${defaultAticlesShowed}`);
     let dataFeatured = await useGetArticles('featured=true');
 
-    return { props: { articles: data, featured: dataFeatured }, revalidate: 10 };
+    return { props: {featured: dataFeatured }, revalidate: 10 };
   } catch (err) {
     return { props: { errors: err.message } };
   }
