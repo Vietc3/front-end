@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Box, BoxProps, Text, useBreakpointValue, HStack, Tag, Icon, TagLabel, Flex, chakra } from '@chakra-ui/react';
 import useColorTheme from '../../hooks/useColorTheme';
-// import Image from '../Image';
+import Image from '../Image';
 import Card from './Card';
 import _ from 'lodash';
 import { useRouter } from 'next/router';
@@ -10,7 +10,7 @@ import moment from 'moment';
 import { getTags } from '../../helpers/commonFuction';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { getUrlImage } from '../../helpers/commonFuction';
-import Image from 'next/image';
+// import Image from 'next/image';
 interface Props extends BoxProps {
     post: any;
     isNextStory?: boolean;
@@ -67,21 +67,14 @@ const PostLastestCard = ({
             flexDirection={flexDirection}
         >
             <Box width={{ base: '70%', lg: '100%' }} height={{ base: '150px', md: '180px', lg: '300px' }}>
-                <div
-                    style={{
-                        position: 'relative',
-                        width: '100%',
-                        height: '100%',
-                        maxHeight: '100%',
-                        maxWidth: '100%',
-                    }}
-                >
-                    <Image
-                        style={{ width: '100%', height: '100%' }}
-                        src={getUrlImage(post.hero_desktop.url)}
-                        layout="fill"
-                    />
-                </div>
+
+                <Image
+                width={{ base: '100%', lg:  '100%' }}
+                    height={{ base: "100%", lg: '100%' }}
+                    src={getUrlImage(post.hero_desktop.url)}
+                    alt={'Photo of ' + post.title}
+                    objectFit="cover"
+                />
 
                 {post.youtube_url ? (
                     <HStack
