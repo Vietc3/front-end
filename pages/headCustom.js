@@ -3,6 +3,9 @@ import React from 'react';
 import Head  from 'next/head';
 
 class HeadCustom extends Head {
+  constructor() {
+    super();
+  }
   getCssLinks(files) {
     const { assetPrefix } = this.context;
     const cssFiles =
