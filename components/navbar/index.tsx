@@ -112,18 +112,18 @@ export default function WithSubnavigation() {
                     />
                 </Flex>
                 <Flex flex={{ base: 10, lg: 1 }} justify={{ base: 'left', md: 'start' }}>
-                    <Button display={{ base: 'none', md: 'flex' }} variant="ghost">
+                    <Button  variant="ghost">
                         <Link href="/">
-                            <Logo w="100%" />
+                            <Logo  />
                         </Link>
                     </Button>
 
-                    <Button display={{ base: 'flex', md: 'none' }} variant="ghost">
+                    {/* <Button display={{ base: 'flex', md: 'none' }} variant="ghost">
                         <Link href="/">
                             <Logo w="80%" h="80%" />
                         </Link>
                     </Button>
-
+ */}
 
                     <Flex display={{ base: 'none', md: 'flex' }} w="100%" ml={5}>
                         <DesktopNav />

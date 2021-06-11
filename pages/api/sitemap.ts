@@ -5,7 +5,7 @@ export default async (req:any, res:any) => {
     const articles = await useGetAllArticles();
   
     const routes = articles.map((article:any) => `/articles/${article.id}`);
-    const localRoutes = ['/', '/videos','/search'];
+    const localRoutes = ['/', '/videos','/search','/aboutUs','/privacyPolicy','/temOfUse','/contactUs','/subscribe','/subscribe/success'];
   
     const pages = routes.concat(localRoutes);
   
