@@ -13,5 +13,13 @@ module.exports = {
       NEXT_PUBLIC_BASE_URL_SALES_PRODUCT: 'https://staging.playitright.com',
       NEXT_PUBLIC_BASE_URL_CLIENT: 'https://playitright.tv'
     },
+    async rewrites() {
+      return [
+        {
+          source: '/sitemap.xml',
+          destination: '/api/sitemap'
+        }
+      ];
+    }
 
 }
