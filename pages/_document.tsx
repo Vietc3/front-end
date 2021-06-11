@@ -11,12 +11,12 @@ export default class Document extends NextDocument {
             <Html>
                 <Head>
                 <link rel="shortcut icon" href="/static/favicon.ico" />
-                <script src="https://gist.github.com/bravetheheat/d0eeb93c15d689d769b3194629ce36ab.js"></script>
+                
                 </Head>
                 <body>
                     <ColorModeScript initialColorMode="light" />
                     <Main />
-                    <NextScript />
+                    <script src="https://gist.github.com/bravetheheat/d0eeb93c15d689d769b3194629ce36ab.js"></script>
                 </body>
             </Html>
         );
