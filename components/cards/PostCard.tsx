@@ -20,8 +20,6 @@ const PostCard = ({ idArticle, article }: Props) => {
     router.push(`/articles/${idArticle}`);
   };
 
-
-
   return (
     <Flex
       className="carousel"

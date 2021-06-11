@@ -49,7 +49,6 @@ const TrendingCard = ({
                             slides.map((slide: any) => (
                                 <Box key={slide.id +slide.title} h="100%" w="full" cursor="pointer" boxSize="full" shadow="md" flex="none" >
                                     <PostCard 
-                                  
                                         article={slide}
                                         idArticle={slide.id}
                                         alt={`Picture of ${slide.title}`}

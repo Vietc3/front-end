@@ -32,9 +32,9 @@ const IndexPage = ({ articles, featured }: Props) => {
     <NextSeo
       title="Home"
       description="This is homepage of PlayIt Right Blog Store"
-      canonical="https://www.canonicalurl.ie/"
+      canonical="https://playitright.tv/"
       openGraph={{
-        url: 'https://www.canonicalurl.ie/',
+        url: 'https://playitright.tv/',
         title: 'Home',
         description: 'This is homepage of PlayIt Right Blog Store',
         images: [
