@@ -1,6 +1,7 @@
 import NextDocument, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
 
 import { ColorModeScript } from '@chakra-ui/react';
+import HeadCustom  from './headCustom';
 import NextScriptCustom  from './nextScriptCustom';
 export default class Document extends NextDocument {
     static getInitialProps(ctx: DocumentContext) {
@@ -10,9 +11,9 @@ export default class Document extends NextDocument {
     render() {
         return (
             <Html>
-                <Head>
+                <HeadCustom>
                 <link rel="shortcut icon" href="/static/favicon.ico" />
-                </Head>
+                </HeadCustom>
                 <body>
                     <ColorModeScript initialColorMode="light" />
                     <Main />
