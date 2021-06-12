@@ -71,13 +71,6 @@ export default class Document extends NextDocument {
                 <Head>
                     <link rel="shortcut icon" href="/static/favicon.ico" />
                     <link
-                        rel="preload"
-                        href="https://api.playitright.tv/uploads/Kai_Hero_Small_81a088cef4.jpg"
-                        as="image"
-                    />
-                    <meta charSet="utf-8" />
-                    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-                    <link
                         rel="stylesheet"
                         href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;family=Rajdhani:wght@300;400;500;600;700&amp;display=swap"
                         data-react-helmet="true"
