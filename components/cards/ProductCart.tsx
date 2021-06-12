@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { chakra, Box, Image, Flex, useColorModeValue, HStack, color } from "@chakra-ui/react";
-import _ from 'lodash';
+import { chakra, Box, Image, Flex, useColorModeValue, HStack } from "@chakra-ui/react";
 type Props = {
   product: any;
 }

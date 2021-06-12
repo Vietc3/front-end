@@ -1,9 +1,9 @@
 import { GetStaticProps } from 'next';
-import Article from '../../components/views/article/Article'
+import Article from '../../components/views/article/Article';
 import { Post } from '../../interfaces';
 import { useGetAllArticles, useGetArticleById, useGetArticles } from '../../helpers/articles';
-import NextStories from '../../components/views/article/NextStories'
-import { NextSeo, ArticleJsonLd } from 'next-seo'
+import NextStories from '../../components/views/article/NextStories';
+import { NextSeo, ArticleJsonLd, BreadcrumbJsonLd, BlogJsonLd, SiteLinksSearchBoxJsonLd,NewsArticleJsonLd } from 'next-seo';
 import Products from '../../components/views/article/Products';
 import { useState, useEffect } from 'react';
 import { useGetProductById } from '../../helpers/product';
@@ -18,15 +18,25 @@ type Props = {
 };
 
 const PostDetail = ({ article, articlesNextStories }: Props) => {
-    
     const router = useRouter();
     if (router.isFallback) {
-        return <Box pl={{ base: '0px', lg: "70px" }}
-            pr={{ base: '0px', lg: "70px" }} d="flex" flexDirection="column" flex="4" as="section" marginY={'.7em'}>
-            <Center>
-                <Text fontWeight="bold" fontSize="xl">Loading Page</Text>
-            </Center>
-        </Box>
+        return (
+            <Box
+                pl={{ base: '0px', lg: '70px' }}
+                pr={{ base: '0px', lg: '70px' }}
+                d="flex"
+                flexDirection="column"
+                flex="4"
+                as="section"
+                marginY={'.7em'}
+            >
+                <Center>
+                    <Text fontWeight="bold" fontSize="xl">
+                        Loading Page
+                    </Text>
+                </Center>
+            </Box>
+        );
     }
 
     const [products, setProducts] = useState<Array<any>>([]);
@@ -35,13 +45,11 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
         const productIds = getProductIds(article.products);
         useEffect(() => {
             const result = productIds.map((id: string) => {
-                return useGetProductById(id)
-            })
-            Promise.all(result).then(res => setProducts(res))
-        }, [article])
+                return useGetProductById(id);
+            });
+            Promise.all(result).then((res) => setProducts(res));
+        }, [article]);
     }
-
-
 
     return (
         <>
@@ -66,17 +74,15 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                             height: 800,
                             alt: 'Og Image Alt Second',
                         },
-                        { url: process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`, },
-                        { url: process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`, },
+                        { url: process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}` },
+                        { url: process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}` },
                     ],
                 }}
             />
             <ArticleJsonLd
                 url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.id}`}
                 title={article.title}
-                images={[
-                    process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`
-                ]}
+                images={[process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`]}
                 datePublished={article.published_at}
                 dateModified={article.createdAt}
                 authorName={article.author}
@@ -84,6 +90,52 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                 publisherLogo={process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`}
                 description="This is a mighty good description of this article."
             />
+
+            <BreadcrumbJsonLd
+                itemListElements={[
+                    {
+                        position: 1,
+                        name: 'Home',
+                        item: 'https://playitright.tv/',
+                    },
+                ]}
+            />
+
+            <BlogJsonLd
+                url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.id}`}
+                title={article.title}
+                images={[process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`]}
+                datePublished={article.published_at}
+                dateModified={article.createdAt}
+                authorName={article.author}
+                description={article.summary}
+            />
+
+            <SiteLinksSearchBoxJsonLd
+                url="https://playitright.tv/"
+                potentialActions={[
+                    {
+                        target: process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.id}`,
+                        queryInput: article.title,
+                    },
+                ]}
+            />
+            <NewsArticleJsonLd
+                 url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.id}`}
+                title={article.title}
+                images={[process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`]}
+                section="politic"
+                keywords={article.title}
+                dateCreated={article.published_at}
+                datePublished={article.published_at}
+                dateModified={article.createdAt}
+                publisherName="PlayitRight TV"
+                authorName={article.author}
+                description={article.summary}
+                publisherLogo={process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`}
+                body={article.body}
+            />
+
             <Article article={article} />
             <NextStories articleId={article.id} articles={articlesNextStories} />
             {products ? <Products products={products} /> : null}
@@ -98,12 +150,12 @@ export async function getStaticPaths() {
     const paths = data.map((article: any) => {
         return {
             params: {
-                slug: article.id.toString()
-            }
-        }
-    })
-    return { paths, fallback: true }
-};
+                slug: article.id.toString(),
+            },
+        };
+    });
+    return { paths, fallback: true };
+}
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     try {

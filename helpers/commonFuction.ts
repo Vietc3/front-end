@@ -1,5 +1,5 @@
 import { URL_BASE } from '../constants';
-import moment from 'moment';
+import dayjs from "dayjs";
 
 export const getUrlImage = (image: string) => {
     return URL_BASE + image
@@ -18,5 +18,5 @@ export const getInterested = (ids: string) => {
 }
 
 export const formatDatePublic = (datePublic: any) => {
-    return moment(datePublic).format("Do MMM YY");
+    return dayjs(datePublic).format("D MMM YY");
 }

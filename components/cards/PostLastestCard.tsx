@@ -3,10 +3,9 @@ import { Box, BoxProps, Text, useBreakpointValue, HStack, Tag, Icon, TagLabel, F
 import useColorTheme from '../../hooks/useColorTheme';
 import Image from '../Image';
 import Card from './Card';
-import _ from 'lodash';
 import { useRouter } from 'next/router';
 import { BsCalendar, BsPencil } from 'react-icons/bs';
-import moment from 'moment';
+import dayjs from "dayjs";
 import { getTags } from '../../helpers/commonFuction';
 import { AiFillPlayCircle } from 'react-icons/ai';
 import { getUrlImage } from '../../helpers/commonFuction';
@@ -32,6 +31,7 @@ const PostLastestCard = ({
     titleFontSize = '1.4rem',
     ...props
 }: Props) => {
+    var upperFirst = require('lodash.upperfirst');
     const colors = useColorTheme();
     const flexDirection: FlexDirection = useBreakpointValue({ base: 'row', md: column ? 'row' : 'row' });
 
@@ -45,7 +45,7 @@ const PostLastestCard = ({
 
     const [hover, setHover] = useState(false);
     const formatDatePublic = (datePublic: any) => {
-        return moment(datePublic).format('Do MMM YY');
+        return dayjs(datePublic).format('D MMM YY');
     };
 
     const tags = getTags(post.tags);
@@ -69,10 +69,20 @@ const PostLastestCard = ({
             <Box width={{ base: '70%', lg: '100%' }} height={{ base: '150px', md: '180px', lg: '300px' }}>
 
                 <Image
-                width={{ base: '100%', lg:  '100%' }}
+                    display={{ base: 'none',md:"none",lg: 'flex' }}
+                    width={{ base: '100%', lg:  '100%' }}
                     height={{ base: "100%", lg: '100%' }}
-                    src={getUrlImage(post.hero_desktop.url)}
-                    alt={'Photo of ' + post.title}
+                    src={post.hero_desktop ? getUrlImage(post.hero_desktop.url) : '/placeholder-1-1.png'}
+                    alt={'Photo of ' + post.title ? post.title :null}
+                    objectFit="cover"
+                />
+
+                <Image
+                display={{ base: 'flex',md:"flex",lg: 'none' }}
+                    width={{ base: '100%', lg:  '100%' }}
+                    height={{ base: "100%", lg: '100%' }}
+                    src={post.hero_mobile ? getUrlImage(post.hero_mobile.url) : '/placeholder-1-1.png'}
+                    alt={'Photo of ' + post.title ? post.title :null}
                     objectFit="cover"
                 />
 
@@ -110,7 +120,7 @@ const PostLastestCard = ({
                     <Flex>
                         <Icon mt={1} as={BsPencil} h={4} w={4} color="black" />
                         <chakra.h2 mx={3} color="gray" fontWeight="bold" fontSize="md">
-                            {post.author}
+                            {post.author ? post.author : "PlayIt Right Tv" }
                         </chakra.h2>
                     </Flex>
                 </Flex>
@@ -124,7 +134,7 @@ const PostLastestCard = ({
                     href="#"
                     color={colors.secondary}
                 >
-                    {_.upperFirst(post.title)}
+                    {post.title ? upperFirst(post.title) : null}
                 </Text>
 
                 <Flex display={{ base: 'flex', lg: 'none' }}>
@@ -142,8 +152,8 @@ const PostLastestCard = ({
                 </Flex>
 
                 <Text mt={10} color="gray.500" display={{ base: 'none', lg: 'flex' }}>
-                    {post.summary.substr(0, 200)}
-                    {post.summary.length > 200 ? '...' : ''}
+                    {post.summary ? post.summary.substr(0, 200) : null}
+                    {post.summary ? (post.summary.length > 200 ? '...' : '') : null}
                 </Text>
             </Box>
         </Card>

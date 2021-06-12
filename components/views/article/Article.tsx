@@ -2,7 +2,7 @@
 import { Box, Heading, Flex, Icon, Tag, TagLabel, chakra, Link, Center } from '@chakra-ui/react';
 import useColorTheme from '../../../hooks/useColorTheme';
 import Markdown from "markdown-to-jsx";
-import _ from 'lodash';
+
 import Commento from '../../commento/commento'
 import { BsCalendar, BsPencil } from "react-icons/bs";
 import YoutubeEmbed from '../../youtube/youtube'
@@ -36,10 +36,10 @@ const Article = ({ article }: Props) => {
     const colors = useColorTheme();
     const urlImage = getUrlImage(article.hero_desktop.url);
     const urlImageMarkdown = () => {
-        return article.body.split('/uploads/').join(`${URL_BASE}/uploads/`);
+        return article.body ? article.body.split('/uploads/').join(`${URL_BASE}/uploads/`) : null;
     }
 
-
+    var upperFirst = require('lodash.upperfirst');
     
     return (
         <>
@@ -79,7 +79,7 @@ const Article = ({ article }: Props) => {
                             fontWeight="bold"
                             pt={5}
                         >
-                            {article.title}
+                            {article.title ? article.title : article.title}
                         </chakra.h1>
                         <Flex textAlign="center" alignItems="center" pt={5} display={{ base: "none", lg: "flex" }}>
                             <Flex>
@@ -91,7 +91,7 @@ const Article = ({ article }: Props) => {
                             <Flex>
                                 <Icon as={BsPencil} h={6} w={6} color="black" />
                                 <chakra.h2 mx={3} color="black" fontWeight="bold" fontSize="lg">
-                                    {article.author}
+                                    {article.author ? article.author : null}
                                 </chakra.h2>
                             </Flex>
                         </Flex>
@@ -106,7 +106,7 @@ const Article = ({ article }: Props) => {
                             <Flex>
                                 <Icon as={BsPencil} h={6} w={6} color="black" />
                                 <chakra.h2 mx={3} color="black" fontWeight="bold" fontSize="lg">
-                                    {article.author}
+                                {article.author ? article.author : null}
                                 </chakra.h2>
                             </Flex>
                         </Center>
@@ -125,7 +125,7 @@ const Article = ({ article }: Props) => {
                 pr={{ base: '0px', lg: "80px" }} as="section" d="flex" flex="3">
                     <Box as="article" margin=".5rem">
                         <Heading  data-aos="fade-left" marginY="1.4rem" color={colors.secondary}>
-                            {_.upperFirst(article?.title)}
+                            {upperFirst(article?.title)}
                         </Heading>
 
                         <Markdown options={{

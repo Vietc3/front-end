@@ -76,7 +76,7 @@ const PostCard = ({ idArticle, article }: Props) => {
               color="white"
               fontWeight="bold"
             >
-              {article.title}
+              {article.title ? article.title : null }
             </chakra.h1>
             {/* <chakra.p mt={4} c color="white">
          {title}
@@ -92,7 +92,7 @@ const PostCard = ({ idArticle, article }: Props) => {
                 <Flex>
                   <Icon as={BsPencil} h={6} w={6} color="white" />
                   <chakra.h2 mx={3} color="white" fontWeight="bold" fontSize="lg">
-                    {article.author}
+                    {article.author ? article.author : null}
                   </chakra.h2>
                 </Flex>
               </Center>
