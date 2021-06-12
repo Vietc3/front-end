@@ -16,7 +16,6 @@ const Layout: React.FC<Props> = ({ children, title = 'Modern News', ...props }) 
         <Head>
             <meta charSet="utf-8" />
             <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&amp;family=Rajdhani:wght@300;400;500;600;700&amp;display=swap" data-react-helmet="true"></link>
         </Head>
         <Box fontFamily="Manrope">
             <header>
