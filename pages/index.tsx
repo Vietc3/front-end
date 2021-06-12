@@ -1,9 +1,9 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TrendingCard from '../components/views/homepage/Trending';
 import LastestCard from '../components/views/homepage/Lastest';
 import { GetStaticProps } from 'next';
 import { useGetArticles } from '../helpers/articles';
-import { NextSeo, ArticleJsonLd } from 'next-seo';
+import { NextSeo, ArticleJsonLd, LogoJsonLd, BreadcrumbJsonLd,SiteLinksSearchBoxJsonLd } from 'next-seo';
 import { Center, Button } from '@chakra-ui/react';
 
 type Props = {
@@ -62,10 +62,21 @@ const IndexPage = ({ articles, featured }: Props) => {
                         { url: 'https://playitright.tv/logoTV.png' },
                         { url: 'https://playitright.tv/logoTV.png' },
                     ],
+                    site_name: 'PlayItRight.tv',
                 }}
             />
+            <LogoJsonLd logo="https://playitright.tv/logoTV.png" url="https://playitright.tv/" />
+            <SiteLinksSearchBoxJsonLd
+                url="https://playitright.tv/"
+                potentialActions={[
+                    {
+                        target: process.env.NEXT_PUBLIC_BASE_URL_CLIENT,
+                        queryInput: 'playitright.tv',
+                    },
+                ]}
+            />
             <ArticleJsonLd
-                url='https://playitright.tv/'
+                url="https://playitright.tv/"
                 title="PlayItRight.tv"
                 images={['https://playitright.tv/logoTV.png']}
                 datePublished="01/06/2021"
@@ -74,6 +85,35 @@ const IndexPage = ({ articles, featured }: Props) => {
                 publisherName="PlayItRight.tv"
                 publisherLogo="https://playitright.tv/logoTV.png"
                 description="This is homepage of PlayIt Right Blog Store"
+            />
+            <BreadcrumbJsonLd
+                itemListElements={[
+                    {
+                        position: 1,
+                        name: 'PlayItRight.tv',
+                        item: 'https://playitright.tv/',
+                    },
+                    {
+                        position: 2,
+                        name: 'Videos',
+                        item: 'https://playitright.tv/videos',
+                    },
+                    {
+                        position: 3,
+                        name: 'Subscribe',
+                        item: 'https://playitright.tv/subscribe',
+                    },
+                    {
+                        position: 4,
+                        name: 'Contact Us',
+                        item: 'https://playitright.tv/contactUs',
+                    },
+                    {
+                        position: 5,
+                        name: 'Home',
+                        item: 'https://playitright.tv/temsOfUse',
+                    },
+                ]}
             />
             <TrendingCard articles={featured} />
 

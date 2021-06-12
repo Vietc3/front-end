@@ -95,8 +95,13 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                 itemListElements={[
                     {
                         position: 1,
-                        name: 'Home',
-                        item: 'https://playitright.tv/',
+                        name: articlesNextStories[0].title,
+                        item: 'https://playitright.tv/'+articlesNextStories[0].id,
+                    },
+                    {
+                        position:2,
+                        name: articlesNextStories[1].title,
+                        item: 'https://playitright.tv/'+articlesNextStories[1].id,
                     },
                 ]}
             />
