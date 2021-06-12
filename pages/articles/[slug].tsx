@@ -63,31 +63,31 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                     description: article.summary,
                     images: [
                         {
-                            url: process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`,
+                            url: process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop ? article.hero_deskto.url : '/logoTV.png'}`,
                             width: 800,
                             height: 600,
                             alt: 'Og Image Alt',
                         },
                         {
-                            url: process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`,
+                            url: process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop ? article.hero_deskto.url : '/logoTV.png'}`,
                             width: 900,
                             height: 800,
                             alt: 'Og Image Alt Second',
                         },
-                        { url: process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}` },
-                        { url: process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}` },
+                        {url: process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop ? article.hero_deskto.url : '/logoTV.png'}` },
+                        {url: process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop ? article.hero_deskto.url : '/logoTV.png'}` },
                     ],
                 }}
             />
             <ArticleJsonLd
                 url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.id}`}
                 title={article.title}
-                images={[process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`]}
+                images={[process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop ? article.hero_deskto.url : '/logoTV.png'}`]}
                 datePublished={article.published_at}
                 dateModified={article.createdAt}
                 authorName={article.author}
                 publisherName={article.author}
-                publisherLogo={process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`}
+                publisherLogo={process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop ? article.hero_deskto.url : '/logoTV.png'}`}
                 description="This is a mighty good description of this article."
             />
 
@@ -104,7 +104,7 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
             <BlogJsonLd
                 url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.id}`}
                 title={article.title}
-                images={[process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`]}
+                images={[process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop ? article.hero_deskto.url : '/logoTV.png'}`]}
                 datePublished={article.published_at}
                 dateModified={article.createdAt}
                 authorName={article.author}
@@ -123,7 +123,7 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
             <NewsArticleJsonLd
                  url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.id}`}
                 title={article.title}
-                images={[process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`]}
+                images={[process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop ? article.hero_deskto.url : '/logoTV.png'}`]}
                 section="politic"
                 keywords={article.title}
                 dateCreated={article.published_at}
@@ -132,7 +132,7 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                 publisherName="PlayitRight TV"
                 authorName={article.author}
                 description={article.summary}
-                publisherLogo={process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop.url}`}
+                publisherLogo={process.env.NEXT_PUBLIC_BASE_URL + `${article.hero_desktop ? article.hero_deskto.url : '/logoTV.png'}`}
                 body={article.body}
             />
 
