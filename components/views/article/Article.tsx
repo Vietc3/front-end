@@ -25,7 +25,6 @@ const MyIMG = ({ children, ...props }: any) => {
     return (
         <Box >
             <Image
-             data-aos="fade-left"
                 src={props.src}>{children}</Image>
         </Box>
     );
