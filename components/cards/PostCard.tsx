@@ -17,7 +17,7 @@ const PostCard = ({ idArticle, article }: Props) => {
   const [hover, setHover] = useState(false);
   const router = useRouter();
   const onClick = () => {
-    router.push(`/articles/${idArticle}`);
+    router.push(`/articles/${article.slug}`);
   };
 
   return (

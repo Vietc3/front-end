@@ -39,8 +39,8 @@ const PostLastestCard = ({
 
     const onClick = () => {
         isNextStory
-            ? window.location.replace(`https://playitright.tv/articles/${post.id}`)
-            : router.push(`/articles/${post.id}`);
+            ? window.location.replace(`https://playitright.tv/articles/${post.slug}`)
+            : router.push(`/articles/${post.slug}`);
     };
 
     const [hover, setHover] = useState(false);

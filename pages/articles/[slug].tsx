@@ -56,9 +56,9 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
             <NextSeo
                 title={article.title}
                 description={article.summary}
-                canonical={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.id}`}
+                canonical={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.slug}`}
                 openGraph={{
-                    url: process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.id}`,
+                    url: process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.slug}`,
                     title: article.title,
                     description: article.summary,
                     images: [
@@ -80,7 +80,7 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                 }}
             />
             <ArticleJsonLd
-                url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.id}`}
+                url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.slug}`}
                 title={article.title}
                 images={[process.env.NEXT_PUBLIC_BASE_URL + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png']}
                 datePublished={article.published_at}
@@ -96,18 +96,18 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                     {
                         position: 1,
                         name: articlesNextStories[0].title,
-                        item: 'https://playitright.tv/'+articlesNextStories[0].id,
+                        item: 'https://playitright.tv/'+articlesNextStories[0].slug,
                     },
                     {
                         position:2,
                         name: articlesNextStories[1].title,
-                        item: 'https://playitright.tv/'+articlesNextStories[1].id,
+                        item: 'https://playitright.tv/'+articlesNextStories[1].slug,
                     },
                 ]}
             />
 
             <BlogJsonLd
-                url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.id}`}
+                url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.slug}`}
                 title={article.title}
                 images={[process.env.NEXT_PUBLIC_BASE_URL + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png']}
                 datePublished={article.published_at}
@@ -120,13 +120,13 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                 url="https://playitright.tv/"
                 potentialActions={[
                     {
-                        target: process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.id}`,
+                        target: process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.slug}`,
                         queryInput: article.title,
                     },
                 ]}
             />
             <NewsArticleJsonLd
-                 url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.id}`}
+                 url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.slug}`}
                 title={article.title}
                 images={[process.env.NEXT_PUBLIC_BASE_URL + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png']}
                 section="politic"
@@ -155,7 +155,7 @@ export async function getStaticPaths() {
     const paths = data.map((article: any) => {
         return {
             params: {
-                slug: article.id.toString(),
+                slug: article.slug.toString(),
             },
         };
     });
@@ -165,9 +165,9 @@ export async function getStaticPaths() {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     try {
         const slug = params?.slug;
-        let data = await useGetArticleById(slug);
-        let dataNextStories = await useGetArticles(`id_ne=${slug}&_sort=public_date:DESC&_start=0&_limit=2`);
-        return { props: { article: data, articlesNextStories: dataNextStories }, revalidate: 10 };
+        let data = await  useGetArticles(`slug=${slug}`);     
+        let dataNextStories = await useGetArticles(`slug_ne=${slug}&_sort=public_date:DESC&_start=0&_limit=2`);
+        return { props: { article: data[0], articlesNextStories: dataNextStories }, revalidate: 10 };
     } catch (err) {
         return { props: { errors: err.message } };
     }
