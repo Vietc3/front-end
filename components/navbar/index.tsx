@@ -18,20 +18,18 @@ import {
     useDisclosure,
     Spacer,
     Button,
-    chakra, HStack
-
+    chakra,
+    HStack,
 } from '@chakra-ui/react';
-import {
-    HamburgerIcon,
-    CloseIcon,
-    ChevronDownIcon
-} from '@chakra-ui/icons';
+import { HamburgerIcon, CloseIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import {
     AiOutlineSearch,
     AiFillFacebook,
     AiOutlineInstagram,
-    AiFillTwitterSquare, AiFillYoutube, AiFillInstagram
-} from "react-icons/ai";
+    AiFillTwitterSquare,
+    AiFillYoutube,
+    AiFillInstagram,
+} from 'react-icons/ai';
 import styles from '../../constants/styles';
 import { useFormik } from 'formik';
 import { useRecoilState } from 'recoil';
@@ -41,29 +39,28 @@ import Logo from '../Logo';
 import React, { useState, useEffect } from 'react';
 import { useUrlSocial } from '../../helpers/contentFooter';
 
-
 export default function WithSubnavigation() {
     const { isOpen, onToggle } = useDisclosure();
     const [OpenSearch, setOpenSearch] = useState(false);
     const [urlButton, setUrlButton] = useState({
-        facebook: "facebook.com", instagram: "instagram.com", youtube: "youtube.com", twitter: "google.com"
+        facebook: 'facebook.com',
+        instagram: 'instagram.com',
+        youtube: 'youtube.com',
+        twitter: 'google.com',
     });
 
     const [searchKeyword, setSearchKeyword] = useRecoilState(SearchKeyword);
 
-
     useEffect(() => {
-        useUrlSocial().then(res => setUrlButton(res)
-        )
-    }, [])
-
+        useUrlSocial().then((res) => setUrlButton(res));
+    }, []);
 
     const router = useRouter();
     const onClick = () => {
         router.push(`/search`);
     };
     const onClickSubscribe = () => {
-       isOpen? onToggle() : null
+        isOpen ? onToggle() : null;
         router.push(`/subscribe`);
     };
 
@@ -71,14 +68,13 @@ export default function WithSubnavigation() {
         window.open(url, '_blank');
     };
 
-
     const formik = useFormik({
         initialValues: {
             keyword: searchKeyword,
         },
-        onSubmit: async values => {
+        onSubmit: async (values) => {
             setSearchKeyword(values.keyword);
-            OpenSearch ? setOpenSearch(!OpenSearch) :null;
+            OpenSearch ? setOpenSearch(!OpenSearch) : null;
             onClick();
         },
     });
@@ -96,25 +92,20 @@ export default function WithSubnavigation() {
                 // borderColor={useColorModeValue('gray.200', 'gray.900')}
                 align={'center'}
                 maxW={styles.mainMaxWidth}
-                mx={'auto'}>
-                <Flex
-                    flex={{ base: 1, md: 'auto' }}
-                    ml={{ base: -2 }}
-                    pt={2}
-                    display={{ base: 'flex', md: 'none' }}>
+                mx={'auto'}
+            >
+                <Flex flex={{ base: 1, md: 'auto' }} ml={{ base: -2 }} pt={2} display={{ base: 'flex', md: 'none' }}>
                     <IconButton
                         onClick={onToggle}
-                        icon={
-                            isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={10} h={10} />
-                        }
+                        icon={isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={10} h={10} />}
                         variant={'ghost'}
                         aria-label={'Toggle Navigation'}
                     />
                 </Flex>
                 <Flex flex={{ base: 10, lg: 1 }} justify={{ base: 'left', md: 'start' }}>
-                    <Button  variant="ghost">
+                    <Button variant="ghost">
                         <Link href="/">
-                            <Logo  />
+                            <Logo />
                         </Link>
                     </Button>
 
@@ -127,100 +118,86 @@ export default function WithSubnavigation() {
 
                     <Flex display={{ base: 'none', md: 'flex' }} w="100%" ml={5}>
                         <DesktopNav />
-
                     </Flex>
                 </Flex>
 
-                <Flex display={{ base: 'none', lg: 'flex' }} pt={3} flex={{ base: 1 }} justify={{ base: 'center', md: 'end' }}>
+                <Flex
+                    display={{ base: 'none', lg: 'flex' }}
+                    pt={3}
+                    flex={{ base: 1 }}
+                    justify={{ base: 'center', md: 'end' }}
+                >
                     <Spacer></Spacer>
-                    <Button display={{ base: 'none', md: 'flex' }} onClick={() => onClickSubscribe()} borderRadius={30} colorScheme="red" variant="solid">
-                    SUBSCRIBE
+                    <Button
+                        display={{ base: 'none', md: 'flex' }}
+                        onClick={() => onClickSubscribe()}
+                        borderRadius={30}
+                        colorScheme="red"
+                        variant="solid"
+                    >
+                        SUBSCRIBE
                     </Button>
                     <Spacer></Spacer>
                     <chakra.form w="40%" onSubmit={formik.handleSubmit}>
                         <InputGroup w="100%">
-                            <InputRightElement
-                                w="15%"
-                                borderRadius={30}
-                                bgColor="black"
-                            >
+                            <InputRightElement w="15%" padding="10px" >
                                 <Button
                                     type="submit"
                                     zIndex="15"
-                                    leftIcon={<AiOutlineSearch />} colorScheme="black" variant="solid">
-                                </Button>
+                                    leftIcon={<AiOutlineSearch color="white"/>}
+                                    h="34px"
+                                    mr={2}
+                                    bg="black"
+                                    variant="solid"
+                                   borderRadius={30} 
+                                ></Button>
                             </InputRightElement>
                             <Input
                                 id="keyword"
                                 name="keyword"
                                 onChange={formik.handleChange}
-                                value={formik.values.keyword} bgColor="white" color="black" borderRadius={25} type="tel" placeholder="Search Keyword" />
+                                value={formik.values.keyword}
+                                bgColor="white"
+                                color="black"
+                                borderRadius={25}
+                                type="tel"
+                                placeholder="Search Keyword"
+                            />
                         </InputGroup>
                     </chakra.form>
                     <Spacer></Spacer>
-                    <Stack
-                        flex={{ base: 1, md: 0 }}
-                        justify={'flex-end'}
-                        direction={'row'}
-                        spacing={6}
-                        pr={1}>
+                    <Stack flex={{ base: 1, md: 0 }} justify={'flex-end'} direction={'row'} spacing={6} pr={1}>
                         <IconButton
                             onClick={() => onClickSocial(urlButton.facebook)}
-                            icon={
-                                <AiFillFacebook color="black" size="md" />
-                            }
+                            icon={<AiFillFacebook color="black" size="md" />}
                             variant={'ghost'}
                             aria-label={'Toggle Navigation'}
                         />
-
                     </Stack>
-                    <Stack
-                        flex={{ base: 1, md: 0 }}
-                        justify={'flex-end'}
-                        direction={'row'}
-                        spacing={6}
-                        pr={1}>
+                    <Stack flex={{ base: 1, md: 0 }} justify={'flex-end'} direction={'row'} spacing={6} pr={1}>
                         <IconButton
                             onClick={() => onClickSocial(urlButton.instagram)}
-                            icon={
-                                <AiOutlineInstagram color="black" size="md" />
-                            }
+                            icon={<AiOutlineInstagram color="black" size="md" />}
                             variant={'ghost'}
                             aria-label={'Toggle Navigation'}
                         />
-
                     </Stack>
-                    <Stack
-                        flex={{ base: 1, md: 0 }}
-                        justify={'flex-end'}
-                        direction={'row'}
-                        spacing={6}
-                        pr={1}>
+                    <Stack flex={{ base: 1, md: 0 }} justify={'flex-end'} direction={'row'} spacing={6} pr={1}>
                         <IconButton
                             onClick={() => onClickSocial(urlButton.twitter)}
-                            icon={
-                                <AiFillTwitterSquare color="black" size="md" />
-                            }
+                            icon={<AiFillTwitterSquare color="black" size="md" />}
                             variant={'ghost'}
                             aria-label={'Toggle Navigation'}
                         />
                     </Stack>
-                    <Stack
-                        flex={{ base: 1, md: 0 }}
-                        justify={'flex-end'}
-                        direction={'row'}
-                        spacing={6}
-                        pr={1}>
+                    <Stack flex={{ base: 1, md: 0 }} justify={'flex-end'} direction={'row'} spacing={6} pr={1}>
                         <IconButton
                             onClick={() => onClickSocial(urlButton.youtube)}
-                            icon={
-                                <AiFillYoutube color="black" size="md" />
-                            }
+                            icon={<AiFillYoutube color="black" size="md" />}
                             variant={'ghost'}
                             aria-label={'Toggle Navigation'}
                         />
                     </Stack>
-
                 </Flex>
 
                 <Stack
@@ -229,16 +206,14 @@ export default function WithSubnavigation() {
                     justify={'flex-end'}
                     direction={'row'}
                     spacing={6}
-                    pr={1}>
+                    pr={1}
+                >
                     <IconButton
                         onClick={() => onClickSocial(urlButton.facebook)}
-                        icon={
-                            <AiFillFacebook color="black" size="md" />
-                        }
+                        icon={<AiFillFacebook color="black" size="md" />}
                         variant={'ghost'}
                         aria-label={'Toggle Navigation'}
                     />
-
                 </Stack>
                 <Stack
                     display={{ base: 'none', md: 'flex', lg: 'none' }}
@@ -246,16 +221,14 @@ export default function WithSubnavigation() {
                     justify={'flex-end'}
                     direction={'row'}
                     spacing={6}
-                    pr={1}>
+                    pr={1}
+                >
                     <IconButton
                         onClick={() => onClickSocial(urlButton.instagram)}
-                        icon={
-                            <AiOutlineInstagram color="black" size="md" />
-                        }
+                        icon={<AiOutlineInstagram color="black" size="md" />}
                         variant={'ghost'}
                         aria-label={'Toggle Navigation'}
                     />
-
                 </Stack>
                 <Stack
                     display={{ base: 'none', md: 'flex', lg: 'none' }}
@@ -263,12 +236,11 @@ export default function WithSubnavigation() {
                     justify={'flex-end'}
                     direction={'row'}
                     spacing={6}
-                    pr={1}>
+                    pr={1}
+                >
                     <IconButton
                         onClick={() => onClickSocial(urlButton.twitter)}
-                        icon={
-                            <AiFillTwitterSquare color="black" size="md" />
-                        }
+                        icon={<AiFillTwitterSquare color="black" size="md" />}
                         variant={'ghost'}
                         aria-label={'Toggle Navigation'}
                     />
@@ -279,18 +251,15 @@ export default function WithSubnavigation() {
                     justify={'flex-end'}
                     direction={'row'}
                     spacing={6}
-                    pr={1}>
+                    pr={1}
+                >
                     <IconButton
                         onClick={() => onClickSocial(urlButton.youtube)}
-                        icon={
-                            <AiFillYoutube color="black" size="md" />
-                        }
+                        icon={<AiFillYoutube color="black" size="md" />}
                         variant={'ghost'}
                         aria-label={'Toggle Navigation'}
                     />
                 </Stack>
-
-
 
                 <Stack
                     display={{ base: 'flex', md: 'flex', lg: 'none' }}
@@ -298,25 +267,26 @@ export default function WithSubnavigation() {
                     justify={'flex-end'}
                     direction={'row'}
                     spacing={6}
-                    pr={1}>
+                    pr={1}
+                >
                     <IconButton
                         onClick={() => setOpenSearch(!OpenSearch)}
-                        icon={
-                            <AiOutlineSearch size="md" />
-                        }
+                        icon={<AiOutlineSearch size="md" />}
                         variant={'ghost'}
                         aria-label={'Toggle Navigation'}
                     />
-
                 </Stack>
             </Flex>
 
-
             <Collapse in={isOpen} animateOpacity>
-                <MobileNav urlButtonSocial={urlButton} onClickSocial={(url: string) => {
-                     onToggle()
-                     onClickSocial(url)
-                }} onClickSubscribe={() => onClickSubscribe()} />
+                <MobileNav
+                    urlButtonSocial={urlButton}
+                    onClickSocial={(url: string) => {
+                        onToggle();
+                        onClickSocial(url);
+                    }}
+                    onClickSubscribe={() => onClickSubscribe()}
+                />
             </Collapse>
             <Collapse in={OpenSearch} animateOpacity>
                 <Box p={2} flex={{ base: 1 }} justify={{ base: 'center', md: 'end' }}>
@@ -324,39 +294,38 @@ export default function WithSubnavigation() {
                         <Spacer />
                         <IconButton
                             onClick={() => setOpenSearch(!OpenSearch)}
-                            icon={
-                                <CloseIcon />
-                            }
+                            icon={<CloseIcon />}
                             variant={'ghost'}
                             aria-label={'Toggle Navigation'}
                         />
-
                     </Flex>
-
 
                     <chakra.form onSubmit={formik.handleSubmit}>
                         <InputGroup w="100%">
-                            <InputRightElement
-                                w="15%"
-                                bgColor="black"
-                            >
+                            <InputRightElement w="15%" bgColor="black">
                                 <Button
                                     type="submit"
                                     zIndex="15"
-                                    leftIcon={<AiOutlineSearch />} colorScheme="black" variant="solid">
-                                </Button>
+                                    leftIcon={<AiOutlineSearch />}
+                                    colorScheme="black"
+                                    variant="solid"
+                                ></Button>
                             </InputRightElement>
                             <Input
                                 id="keyword"
                                 name="keyword"
                                 onChange={formik.handleChange}
-                                value={formik.values.keyword} bgColor="white" color="black" type="tel" placeholder="Search Keyword" />
+                                value={formik.values.keyword}
+                                bgColor="white"
+                                color="black"
+                                type="tel"
+                                placeholder="Search Keyword"
+                            />
                         </InputGroup>
                     </chakra.form>
                 </Box>
             </Collapse>
         </Box>
-
     );
 }
 
@@ -376,7 +345,8 @@ const DesktopNav = () => {
                                 _hover={{
                                     textDecoration: 'none',
                                     color: useColorModeValue('gray', 'white'),
-                                }}>
+                                }}
+                            >
                                 {navItem.label}
                             </Link>
                         </PopoverTrigger>
@@ -388,8 +358,9 @@ const DesktopNav = () => {
                                 bg={useColorModeValue('white', 'gray.800')}
                                 p={4}
                                 rounded={'xl'}
-                                minW={'sm'}>
-                                <Stack >
+                                minW={'sm'}
+                            >
+                                <Stack>
                                     {navItem.children.map((child) => (
                                         <DesktopSubNav key={child.label} {...child} />
                                     ))}
@@ -413,78 +384,69 @@ const DesktopSubNav = ({ label, href }: NavItem) => {
             fontWeight="bold"
             fontFamily={'heading'}
             // rounded={'md'}
-            _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
+            _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}
+        >
             <Text
                 textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
                 fontWeight="bold"
-                color={useColorModeValue('gray.800', 'white')}>
+                color={useColorModeValue('gray.800', 'white')}
+            >
                 {label}
             </Text>
-
         </Link>
     );
 };
-
 
 type PropsMobileNav = {
     onClickSubscribe?: any;
     onClickSocial?: any;
     urlButtonSocial?: any;
-}
+};
 
 const MobileNav = ({ onClickSubscribe, onClickSocial, urlButtonSocial }: PropsMobileNav) => {
     return (
-        <Stack
-            bg={useColorModeValue('white', 'gray.800')}
-            p={4}
-            display={{ md: 'none' }}
-            h="100vh">
+        <Stack bg={useColorModeValue('white', 'gray.800')} p={4} display={{ md: 'none' }} h="100vh">
             {NAV_ITEMS.map((navItem) => (
                 <MobileNavItem key={navItem.label} {...navItem} />
             ))}
-            <Button display={{ base: 'flex' }} onClick={() => onClickSubscribe()} borderRadius={30} colorScheme="red" variant="solid">
+            <Button
+                display={{ base: 'flex' }}
+                onClick={() => onClickSubscribe()}
+                borderRadius={30}
+                colorScheme="red"
+                variant="solid"
+            >
                 SUBSCRIBE
             </Button>
-            <HStack
-                spacing="0"
-            >
+            <HStack spacing="0">
                 <IconButton
                     w="15%"
                     onClick={() => onClickSocial(urlButtonSocial.facebook)}
-                    icon={
-                        <AiFillFacebook color="black" size="md" />
-                    }
+                    icon={<AiFillFacebook color="black" size="md" />}
                     variant={'ghost'}
                     aria-label={'Toggle Navigation'}
                 />
                 <IconButton
                     w="15%"
                     onClick={() => onClickSocial(urlButtonSocial.instagram)}
-                    icon={
-                        <AiOutlineInstagram color="black" size="md" />
-                    }
+                    icon={<AiOutlineInstagram color="black" size="md" />}
                     variant={'ghost'}
                     aria-label={'Toggle Navigation'}
                 />
                 <IconButton
                     w="15%"
                     onClick={() => onClickSocial(urlButtonSocial.twitter)}
-                    icon={
-                        <AiFillTwitterSquare color="black" size="md" />
-                    }
+                    icon={<AiFillTwitterSquare color="black" size="md" />}
                     variant={'ghost'}
                     aria-label={'Toggle Navigation'}
                 />
                 <IconButton
                     w="15%"
                     onClick={() => onClickSocial(urlButtonSocial.youtube)}
-                    icon={
-                        <AiFillYoutube color="black" size="md" />
-                    }
+                    icon={<AiFillYoutube color="black" size="md" />}
                     variant={'ghost'}
                     aria-label={'Toggle Navigation'}
                 />
-
             </HStack>
             {/* <Stack
 
@@ -525,8 +487,6 @@ const MobileNav = ({ onClickSubscribe, onClickSocial, urlButtonSocial }: PropsMo
                         aria-label={'Toggle Navigation'}
                     />
                 </Stack> */}
-
-
         </Stack>
     );
 };
@@ -544,7 +504,8 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
                 align={'center'}
                 _hover={{
                     textDecoration: 'none',
-                }}>
+                }}
+            >
                 <Text
                     fontSize={'lg'}
                     fontWeight={800}
@@ -552,7 +513,8 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
                     _hover={{
                         textDecoration: 'none',
                         color: useColorModeValue('gray', 'white'),
-                    }}>
+                    }}
+                >
                     {label}
                 </Text>
                 {children && (
@@ -573,7 +535,8 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
                     borderLeft={1}
                     borderStyle={'solid'}
                     borderColor={useColorModeValue('gray.200', 'gray.700')}
-                    align={'start'}>
+                    align={'start'}
+                >
                     {children &&
                         children.map((child) => (
                             <Link key={child.label} py={2} href={child.href}>
@@ -594,7 +557,6 @@ interface NavItem {
 }
 
 const NAV_ITEMS: Array<NavItem> = [
-
     {
         label: 'HOME',
         href: '/',
@@ -603,8 +565,8 @@ const NAV_ITEMS: Array<NavItem> = [
         label: 'VIDEOS',
         href: '/videos',
     },
-    // {
-    //     label: 'PLAYITRIGHT STORE',
-    //     href: process.env.NEXT_PUBLIC_BASE_URL_SALES_PRODUCT
-    // },
+    {
+        label: 'PLAYITRIGHT STORE',
+        href: process.env.NEXT_PUBLIC_BASE_URL_SALES_PRODUCT,
+    },
 ];

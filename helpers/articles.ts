@@ -16,3 +16,15 @@ export const useGetArticleById = async (id:any) => {
      const data = await fetch(URL_BASE_ARTICLES+'/'+id)
      return data.json()
 }
+
+
+export const useCount = async (id: any,data:any) => {
+        const response = await fetch(URL_BASE_ARTICLES+'/'+id, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        return response.json()
+}

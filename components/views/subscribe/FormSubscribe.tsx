@@ -64,7 +64,7 @@ const FormSubscribe = () => {
         >
             <Box
                 flexDirection={{ base: 'column', md: 'row' }}>
-                <Box mt={[0, 0, 20]}
+                <Box mt={[0, 0, 15]}
                 >
                     <Box bgColor="red" w="100%"
                         h="5px"

@@ -4,7 +4,7 @@ export default async (req:any, res:any) => {
     // Fetch data from a CMS.
     const articles = await useGetAllArticles();
   
-    const routes = articles.map((article:any) => `/articles/${article.id}`);
+    const routes = articles.map((article:any) => `/articles/${article.slug}`);
     const localRoutes = ['/', '/videos','/search','/aboutUs','/privacyPolicy','/temOfUse','/contactUs','/subscribe','/subscribe/success'];
   
     const pages = routes.concat(localRoutes);

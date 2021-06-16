@@ -15,7 +15,7 @@ import {
 import {RecoilRoot} from 'recoil';
 import {DefaultSeo} from 'next-seo';
 import SEO from '../next-seo.config';
-
+import { CookiesProvider } from 'react-cookie';
 
 const override = css`
 position: absolute;
@@ -38,7 +38,8 @@ function Application({ Component, pageProps }: AppProps) {
         
         <RecoilRoot>
             <DefaultSeo {...SEO} />
-        <Chakra cookies={pageProps.cookies}>      
+        <Chakra cookies={pageProps.cookies}>    
+        <CookiesProvider>  
             <Layout title="Home | Modern News" px={{ base: '.6em', md: '1.2em' }} py="1.4em">
             <Modal isOpen={loading}>
                     <ModalOverlay textAlign="center">
@@ -47,7 +48,7 @@ function Application({ Component, pageProps }: AppProps) {
                 </Modal>
             <Component {...pageProps} />
             </Layout>
-           
+        </CookiesProvider>
         </Chakra>
         </RecoilRoot>
        

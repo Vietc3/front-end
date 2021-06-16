@@ -3,7 +3,7 @@ import TrendingCard from '../components/views/homepage/Trending';
 import LastestCard from '../components/views/homepage/Lastest';
 import { GetStaticProps } from 'next';
 import { useGetArticles } from '../helpers/articles';
-import { NextSeo, ArticleJsonLd, LogoJsonLd, BreadcrumbJsonLd,SiteLinksSearchBoxJsonLd } from 'next-seo';
+import { NextSeo, ArticleJsonLd, LogoJsonLd, BreadcrumbJsonLd, SiteLinksSearchBoxJsonLd } from 'next-seo';
 import { Center, Button } from '@chakra-ui/react';
 
 type Props = {
@@ -39,13 +39,13 @@ const IndexPage = ({ articles, featured }: Props) => {
     return (
         <>
             <NextSeo
-                title="Home"
-                description="This is homepage of PlayIt Right Blog Store"
+                title="PlayitRight TV"
+                description="PlayitRight TV is a passion project for Filipino Sports Fans"
                 canonical="https://playitright.tv/"
                 openGraph={{
                     url: 'https://playitright.tv/',
                     title: 'Home',
-                    description: 'This is homepage of PlayIt Right Blog Store',
+                    description: 'PlayitRight TV is a passion project for Filipino Sports Fans',
                     images: [
                         {
                             url: 'https://playitright.tv/logoTV.png',
@@ -62,7 +62,7 @@ const IndexPage = ({ articles, featured }: Props) => {
                         { url: 'https://playitright.tv/logoTV.png' },
                         { url: 'https://playitright.tv/logoTV.png' },
                     ],
-                    site_name: 'PlayItRight.tv',
+                    site_name: 'PlayitRight Tv',
                 }}
             />
             <LogoJsonLd logo="https://playitright.tv/logoTV.png" url="https://playitright.tv/" />
@@ -77,14 +77,14 @@ const IndexPage = ({ articles, featured }: Props) => {
             />
             <ArticleJsonLd
                 url="https://playitright.tv/"
-                title="PlayItRight.tv"
+                title="PlayitRight TV"
                 images={['https://playitright.tv/logoTV.png']}
                 datePublished="01/06/2021"
                 dateModified="01/06/2021"
-                authorName="PlayItRight.tv"
-                publisherName="PlayItRight.tv"
+                authorName="PlayitRight TV"
+                publisherName="PlayitRight TV"
                 publisherLogo="https://playitright.tv/logoTV.png"
-                description="This is homepage of PlayIt Right Blog Store"
+                description="PlayitRight TV is a passion project for Filipino Sports Fans"
             />
             <BreadcrumbJsonLd
                 itemListElements={[

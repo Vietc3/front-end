@@ -1,7 +1,7 @@
 import { GetStaticProps } from 'next';
 import Article from '../../components/views/article/Article';
 import { Post } from '../../interfaces';
-import { useGetAllArticles, useGetArticleById, useGetArticles } from '../../helpers/articles';
+import { useGetAllArticles, useCount, useGetArticles } from '../../helpers/articles';
 import NextStories from '../../components/views/article/NextStories';
 import { NextSeo, ArticleJsonLd, BreadcrumbJsonLd, BlogJsonLd, SiteLinksSearchBoxJsonLd,NewsArticleJsonLd } from 'next-seo';
 import Products from '../../components/views/article/Products';
@@ -40,6 +40,10 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
     }
 
     const [products, setProducts] = useState<Array<any>>([]);
+
+    useEffect(() => {
+        useCount(article.id,{views:+article.views+1})
+    }, []);
 
     if (article.products) {
         const productIds = getProductIds(article.products);

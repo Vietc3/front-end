@@ -25,6 +25,8 @@
         "next-seo": "^4.24.0",
         "react": "^17.0.2",
         "react-commento": "^1.0.0",
+        "react-cookie": "^4.0.3",
+        "react-cookie-consent": "^6.2.4",
         "react-dom": "^17.0.2",
         "react-icons": "^4.2.0",
         "react-spinners": "^0.10.6",
