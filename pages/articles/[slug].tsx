@@ -124,8 +124,8 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                 url="https://playitright.tv/"
                 potentialActions={[
                     {
-                        target: process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.slug}`,
-                        queryInput: article.title,
+                        target: process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/`,
+                        queryInput: article.slug,
                     },
                 ]}
             />

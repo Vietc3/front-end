@@ -24,7 +24,7 @@ const Layout = ({ children, title = 'Modern News', ...props }: Props) => {
             const timer = setTimeout(() => {
                 setCookie('subscribe', 'true');
                 setIsOpen(true)
-            }, 1000*60*2);
+            }, 1000);
             return () => clearTimeout(timer);
         }
     }, []);
