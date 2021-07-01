@@ -125,7 +125,7 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                 potentialActions={[
                     {
                         target: process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/`,
-                        queryInput: article.slug,
+                        queryInput: 'PlayItRight',
                     },
                 ]}
             />
