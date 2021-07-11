@@ -8,9 +8,9 @@ const Image = ({ ...props }: Props) => {
 
     if (!isLoaded)
         return (
-            <Skeleton minHeight={props.minHeight || '100px'} height={'100%'} width={'100%'}>
-                <ChakraImage onLoadCapture={() => setIsLoaded(true)} {...props} />
-            </Skeleton>
+          
+                <ChakraImage {...props} />
+           
         );
 
     return <ChakraImage {...props} />;
