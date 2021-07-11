@@ -70,31 +70,31 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                     description: article.summary,
                     images: [
                         {
-                            url: process.env.NEXT_PUBLIC_BASE_URL + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png',
+                            url: 'https://api.playitright.tv' + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png',
                             width: 800,
                             height: 600,
                             alt: 'Og Image Alt',
                         },
                         {
-                            url: process.env.NEXT_PUBLIC_BASE_URL + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png',
+                            url: 'https://api.playitright.tv' + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png',
                             width: 900,
                             height: 800,
                             alt: 'Og Image Alt Second',
                         },
-                        {url: process.env.NEXT_PUBLIC_BASE_URL + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png' },
-                        {url: process.env.NEXT_PUBLIC_BASE_URL + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png' },
+                        { url: 'https://api.playitright.tv' + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png' },
+                        { url: 'https://api.playitright.tv' + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png' },
                     ],
                 }}
             />
             <ArticleJsonLd
                 url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.slug}`}
                 title={article.title}
-                images={[process.env.NEXT_PUBLIC_BASE_URL + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png']}
+                images={['https://api.playitright.tv' + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png']}
                 datePublished={article.published_at}
                 dateModified={article.createdAt}
                 authorName={article.author}
                 publisherName={article.author}
-                publisherLogo={process.env.NEXT_PUBLIC_BASE_URL + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png'}
+                publisherLogo={'https://api.playitright.tv' + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png'}
                 description="This is a mighty good description of this article."
             />
 
@@ -116,7 +116,7 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
             <BlogJsonLd
                 url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.slug}`}
                 title={article.title}
-                images={[process.env.NEXT_PUBLIC_BASE_URL + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png']}
+                images={['https://api.playitright.tv' + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png']}
                 datePublished={article.published_at}
                 dateModified={article.createdAt}
                 authorName={article.author}
