@@ -113,7 +113,7 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
             <BlogJsonLd
                 url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.slug}`}
                 title={article.title}
-                images={[process.env.NEXT_PUBLIC_BASE_URL + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png']}
+                images={[process.env.NEXT_PUBLIC_BASE_URL +`${article.hero_desktop.url}`]}
                 datePublished={article.published_at}
                 dateModified={article.createdAt}
                 authorName={article.author}
@@ -132,7 +132,7 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
             <NewsArticleJsonLd
                  url={process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/${article.slug}`}
                 title={article.title}
-                images={[process.env.NEXT_PUBLIC_BASE_URL + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png']}
+                images={[process.env.NEXT_PUBLIC_BASE_URL +`${article.hero_desktop.url}`]}
                 section="politic"
                 keywords={article.title}
                 dateCreated={article.published_at}
@@ -141,7 +141,7 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                 publisherName="PlayitRight TV"
                 authorName={article.author}
                 description={article.summary}
-                publisherLogo={process.env.NEXT_PUBLIC_BASE_URL + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png'}
+                publisherLogo={process.env.NEXT_PUBLIC_BASE_URL +`${article.hero_desktop.url}`}
                 body={article.body}
             />
 

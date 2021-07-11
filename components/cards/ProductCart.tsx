@@ -38,7 +38,7 @@ const ProductCard = ({ product }: Props) => {
     };
 
     const colors = product.searchable.colors.filter((color: string) => color.charAt(0) === '#');
-    console.log(product);
+
 
     return (
         <Flex

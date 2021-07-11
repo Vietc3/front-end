@@ -48,24 +48,24 @@ const IndexPage = ({ articles, featured }: Props) => {
                     description: 'PlayitRight TV is a passion project for Filipino Sports Fans',
                     images: [
                         {
-                            url: 'https://playitright.tv/logoTV.png',
+                            url: 'https://playitright.tv/logoTV.jpg',
                             width: 800,
                             height: 600,
                             alt: 'Og Image Alt',
                         },
                         {
-                            url: 'https://playitright.tv/logoTV.png',
+                            url: 'https://playitright.tv/logoTV.jpg',
                             width: 900,
                             height: 800,
                             alt: 'Og Image Alt Second',
                         },
-                        { url: 'https://playitright.tv/logoTV.png' },
-                        { url: 'https://playitright.tv/logoTV.png' },
+                        { url: 'https://playitright.tv/logoTV.jpg' },
+                        { url: 'https://playitright.tv/logoTV.jpg' },
                     ],
                     site_name: 'PlayitRight Tv',
                 }}
             />
-            <LogoJsonLd logo="https://playitright.tv/logoTV.png" url="https://playitright.tv/" />
+            <LogoJsonLd logo="https://playitright.tv/logoTV.jpg" url="https://playitright.tv/" />
             <SiteLinksSearchBoxJsonLd
                 url="https://playitright.tv/"
                 potentialActions={[
@@ -78,12 +78,12 @@ const IndexPage = ({ articles, featured }: Props) => {
             <ArticleJsonLd
                 url="https://playitright.tv/"
                 title="PlayitRight TV"
-                images={['https://playitright.tv/logoTV.png']}
+                images={['https://playitright.tv/logoTV.jpg']}
                 datePublished="01/06/2021"
                 dateModified="01/06/2021"
                 authorName="PlayitRight TV"
                 publisherName="PlayitRight TV"
-                publisherLogo="https://playitright.tv/logoTV.png"
+                publisherLogo="https://playitright.tv/logoTV.jpg"
                 description="PlayitRight TV is a passion project for Filipino Sports Fans"
             />
             <BreadcrumbJsonLd
