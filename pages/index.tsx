@@ -66,7 +66,15 @@ const IndexPage = ({ articles, featured }: Props) => {
                 }}
             />
             <LogoJsonLd logo="https://playitright.tv/logoTV.png" url="https://playitright.tv/" />
-
+            <SiteLinksSearchBoxJsonLd
+                url="https://playitright.tv/"
+                potentialActions={[
+                    {
+                        target: 'https://playitright.tv/',
+                        queryInput: 'PlayItRightTv',
+                    },
+                ]}
+            />
             <ArticleJsonLd
                 url="https://playitright.tv/"
                 title="PlayitRight TV"

@@ -55,6 +55,9 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
         }, [article]);
     }
 
+    console.log( process.env.NEXT_PUBLIC_BASE_URL + article.hero_desktop ? `${article.hero_desktop.url}` : '/logoTV.png',);
+    
+
     return (
         <>
             <NextSeo
@@ -125,7 +128,7 @@ const PostDetail = ({ article, articlesNextStories }: Props) => {
                 potentialActions={[
                     {
                         target: process.env.NEXT_PUBLIC_BASE_URL_CLIENT + `/articles/`,
-                        queryInput: 'PlayItRight',
+                        queryInput: 'PlayItRightTv',
                     },
                 ]}
             />

@@ -29,7 +29,7 @@ const Products = ({
             </chakra.h1>
             <Image pl="5px" w="170px" src="/logo.png" h="42px" />
             </Box>
-            <Box d="flex" flexDirection={{ base: 'column', lg: 'row' }} h={{ lg: "500px" }} pl={{ base: '0px', lg: "80px" }}
+            <Box d="flex" flexDirection={{ base: 'column', lg: 'row' }} h={{ lg: "520px" }} pl={{ base: '0px', lg: "80px" }}
                 pr={{ base: '0px', lg: "80px" }} >
                 {products?.map((product: any) => {
                     return (
