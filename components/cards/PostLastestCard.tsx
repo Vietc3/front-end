@@ -72,9 +72,10 @@ const PostLastestCard = ({
                     display={{ base: 'none',md:"none",lg: 'flex' }}
                     width={{ base: '100%', lg:  '100%' }}
                     height={{ base: "100%", lg: '100%' }}
+                  
                     src={post.hero_desktop ? getUrlImage(post.hero_desktop.url) : '/placeholder-1-1.png'}
                     alt={'Photo of ' + post.title ? post.title :null}
-                    objectFit="cover"
+                    objectFit="fill"
                 />
 
                 <Image
@@ -83,7 +84,7 @@ const PostLastestCard = ({
                     height={{ base: "100%", lg: '100%' }}
                     src={post.hero_mobile ? getUrlImage(post.hero_mobile.url) : '/placeholder-1-1.png'}
                     alt={'Photo of ' + post.title ? post.title :null}
-                    objectFit="cover"
+                    objectFit="fill"
                 />
 
                 {post.youtube_url ? (

@@ -47,7 +47,7 @@ const Article = ({ article }: Props) => {
                     backgroundImage: `url("${urlImage}")`,
                     backgroundRepeat: 'no-repeat',
                     width: '100%',
-                    backgroundSize: "cover"
+                    backgroundSize: "100% 100%"
                 }}
                     display="flex"
                     justifyContent="flex-end"
